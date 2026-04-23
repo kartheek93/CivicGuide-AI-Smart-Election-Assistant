@@ -1,0 +1,5 @@
+runtime: nodejs20
+instance_class: F1
+env_variables:
+  NODE_ENV: "production"
+  # Set GEMINI_API_KEY and ADMIN_PASSWORD in the GCP Console under App Engine > Versions > Configuration
