@@ -162,6 +162,14 @@ const dict = {
 
 let currentLang = 'en';
 
+// --- LOGICAL USER CONTEXT (For AI Coach Persona) ---
+let userContext = {
+    hasCheckedEligibility: false,
+    age: null,
+    isEligible: null,
+    reason: null
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize GSAP
@@ -368,6 +376,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const result = checkEligibility(parseInt(age), citizenship, registration);
         
+        // --- UPDATE LOGICAL CONTEXT ---
+        userContext.hasCheckedEligibility = true;
+        userContext.age = parseInt(age);
+        userContext.isEligible = result.eligible;
+        userContext.reason = result.message;
+
         // Dynamic Eligible/Not Eligible labels
         let eligibleLabel = "Eligible";
         let notEligibleLabel = "Not Yet Eligible";
@@ -390,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.fromTo(resultBox, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.3 });
     });
 
-    // ---- AI Q&A ----
+    // ---- AI Q&A (Context-Aware AI Coach) ----
     const aiForm = document.getElementById('ai-form');
     const askBtn = document.getElementById('ask-btn');
     const aiLoading = document.getElementById('ai-loading');
@@ -403,12 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let question = questionInput.value.trim();
 
         if (!isValidQuestion(question)) return;
-
-        // Append language instruction
-        const langName = dict[currentLang].langName;
-        if (currentLang !== 'en') {
-            question += ` (Please answer in ${langName})`;
-        }
 
         // Add user message to chat UI
         const userMsgHtml = `
@@ -435,7 +443,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`
                 },
-                body: JSON.stringify({ question })
+                body: JSON.stringify({ 
+                    question,
+                    language: dict[currentLang].langName,
+                    context: userContext // Pushing logical context to the AI
+                })
             });
 
             const data = await response.json();

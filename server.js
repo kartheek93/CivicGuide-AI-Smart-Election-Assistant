@@ -58,12 +58,12 @@ app.post('/api/ask', async (req, res) => {
             return res.status(403).json({ error: 'Unauthorized access. Please login.' });
         }
 
-        const { question } = req.body;
+        const { question, language, context } = req.body;
         if (!question || typeof question !== 'string' || question.length > 500) {
             return res.status(400).json({ error: 'Invalid question provided.' });
         }
         
-        const answer = await geminiService.askQuestion(question);
+        const answer = await geminiService.askQuestion(question, language, context);
         res.json({ answer });
     } catch (error) {
         console.error('Error handling /api/ask:', error);

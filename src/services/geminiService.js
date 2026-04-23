@@ -32,7 +32,7 @@ class GeminiService {
             this.genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
             this.model = this.genAI.getGenerativeModel({
-                model: "gemini-2.5-flash", // safest + fastest model
+                model: "gemini-2.5-flash", 
             });
 
             this.initialized = true;
@@ -43,9 +43,13 @@ class GeminiService {
         }
     }
 
-    async askQuestion(question) {
+    /**
+     * @param {string} question 
+     * @param {string} language - The current UI language
+     * @param {object} userContext - Context from the eligibility checker
+     */
+    async askQuestion(question, language = "English", userContext = null) {
         try {
-            // Ensure initialization
             if (!this.initialized || !this.model) {
                 this.init();
             }
@@ -54,54 +58,46 @@ class GeminiService {
                 return "AI service is currently unavailable. Please check server configuration.";
             }
 
+            // Building the personalized context string
+            let contextInstruction = "";
+            if (userContext && userContext.hasCheckedEligibility) {
+                contextInstruction = `
+USER CONTEXT:
+- Age: ${userContext.age}
+- Eligibility Status: ${userContext.isEligible ? 'Eligible' : 'Not Eligible'}
+- Specific Feedback given: ${userContext.reason}
+`;
+            }
+
             const prompt = `
-You are CivicGuide AI, an intelligent election assistant focused on Indian elections.
+SYSTEM ROLE (Vertical: AI Election Coach):
+You are the "CivicGuide AI Election Coach". Your mission is to provide personalized, intelligent, and logical guidance to voters in India.
 
-Your role:
-- Explain election processes clearly
-- Help first-time voters understand steps
-- Answer questions using simple language
+RULES:
+1. Stay politically neutral.
+2. Use bullet points and a friendly coaching tone.
+3. Keep answers under 150 words.
+4. Respond in ${language}.
 
-Rules:
-- Stay politically neutral
-- Do not promote any candidate or party
-- Use bullet points and structured format
-- Keep answers concise and practical
+LOGICAL DECISION MAKING:
+Use the provided USER CONTEXT to tailor your advice. If the user is ineligible (e.g., underage), logically explain what they can do (e.g., register later).
+
+${contextInstruction}
 
 KNOWLEDGE BASE:
 ${knowledgeBaseContext}
 
-Question: ${question}
+USER QUESTION: ${question}
 `;
 
             const result = await this.model.generateContent({
-                contents: [
-                    {
-                        role: "user",
-                        parts: [{ text: prompt }],
-                    },
-                ],
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
             });
 
-            const response = result.response.text();
-
-            return response || "No response generated.";
+            return result.response.text() || "No response generated.";
 
         } catch (error) {
-            console.error("❌ Gemini API Error:", {
-                message: error.message,
-                status: error.status,
-            });
-
-            // 🔥 Smart error messages (helps debugging fast)
-            if (error.status === 404) {
-                return "Model not found. Please verify model name or API access.";
-            }
-
-            if (error.status === 403) {
-                return "API key issue or permission denied.";
-            }
-
+            console.error("❌ Gemini API Error:", error.message);
             return "AI service error. Please try again later.";
         }
     }
