@@ -1,318 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CivicGuide AI - Indian Election Coach</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 
-                        primary: '#2563eb', 
-                        saffron: '#FF9933',
-                        green: '#138808',
-                        navy: '#000080'
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/components/styles.css">
-    <!-- GSAP for Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CIVICGUIDE123"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-CIVICGUIDE123');
-    </script>
-</head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col overflow-x-hidden">
+    <meta name="description" content="CivicGuide AI helps citizens understand voting, eligibility, election timelines, and trusted election knowledge.">
+    <meta name="theme-color" content="#101a3d">
+    <title>CivicGuide AI - Smart Election Assistant</title>
 
-    <!-- Login Page Wrapper -->
-    <div id="login-page-wrapper" class="fixed inset-0 bg-slate-100 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-lg transform transition-all text-center glass-panel border-b-8 border-green">
-            <div class="mb-8">
-                <img src="/assets/watermark.png" alt="4 Lions" class="w-24 mx-auto mb-4 opacity-80">
-                <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 mb-2">CivicGuide</h2>
-                <p class="font-black uppercase tracking-widest text-sm text-saffron">AI Election Coach</p>
-                <p class="text-xs text-gray-400 mt-4 font-bold">Admin Portal Access<br><span class="text-navy">(Default: admin123)</span></p>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/components/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content" data-i18n="accessibility.skipLink">Skip to main content</a>
+
+    <div id="login-page" class="login-page">
+        <div class="login-page__overlay" aria-hidden="true"></div>
+        <section class="login-card" aria-labelledby="login-title">
+            <div class="login-card__language">
+                <label class="visually-hidden" for="login-language" data-i18n="topbar.languageLabel">Language</label>
+                <select id="login-language" class="language-select" aria-label="Language"></select>
             </div>
-            
-            <form id="login-form" class="space-y-6 text-left">
-                <div class="relative">
-                    <input type="password" id="password" name="password" value="admin123" 
-                           class="peer w-full px-5 py-4 border-2 border-gray-100 rounded-2xl outline-none focus:border-saffron transition-all bg-slate-50/50 text-gray-900 font-bold" placeholder=" " required>
-                    <label for="password" class="absolute left-5 top-4.5 text-gray-400 cursor-text transition-all bg-white px-2 rounded
-                           peer-focus:-top-3 peer-focus:text-xs peer-focus:text-saffron
-                           peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs">Administrator Password</label>
+
+            <div class="brand-lockup brand-lockup--center">
+                <img class="brand-lockup__mark" src="/assets/watermark.png" alt="" width="72" height="72" decoding="async">
+                <p class="eyebrow" data-i18n="login.portalLabel">Secure Admin Portal</p>
+                <h1 id="login-title" data-i18n="brand.name">CivicGuide AI</h1>
+                <p data-i18n="login.subtitle">A trusted digital assistant for Indian election guidance.</p>
+            </div>
+
+            <form id="login-form" class="form-stack" novalidate>
+                <div class="floating-field">
+                    <input id="password" name="password" type="password" autocomplete="current-password" placeholder=" " required aria-describedby="login-help login-error">
+                    <label for="password" data-i18n="login.passwordLabel">Administrator password</label>
                 </div>
-                <div id="login-error" class="hidden p-4 rounded-xl bg-red-50 border-l-4 border-red-500 text-red-700 text-sm font-bold"></div>
-                <button type="submit" id="login-btn" 
-                        class="w-full bg-saffron hover:bg-orange-600 text-white font-black py-4 px-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 active:scale-95">
-                    Enter Portal
+                <p id="login-help" class="form-hint" data-i18n="login.help">Enter your authorized administrator credential to continue.</p>
+                <div id="login-error" class="alert alert--error" role="alert" hidden></div>
+                <button id="login-submit" class="button button--primary button--block" type="submit">
+                    <span class="button__label" data-i18n="login.button">Enter secure portal</span>
+                    <span class="button__spinner" aria-hidden="true"></span>
                 </button>
             </form>
-            <p class="mt-8 text-[10px] text-gray-400 font-black tracking-widest uppercase">🇮🇳 Secure Govt-Grade Access 🇮🇳</p>
-        </div>
+        </section>
     </div>
 
-    <!-- Main Application Wrapper -->
-    <div id="app-wrapper" class="hidden flex-col min-h-screen">
-        <!-- Modern Header with Tricolor theme -->
-        <header class="bg-white/90 backdrop-blur-xl border-b-4 border-gray-100 sticky top-0 z-40 header-tricolor" id="main-header">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between">
-                <div class="flex items-center gap-6">
-                    <div class="relative">
-                        <img src="/assets/flag.png" alt="India Flag" class="w-16 floating-flag">
-                    </div>
+    <div id="app" class="app is-hidden" aria-hidden="true">
+        <div id="sidebar-backdrop" class="sidebar-backdrop" hidden></div>
+
+        <header class="topbar">
+            <div class="topbar__inner">
+                <button id="menu-toggle" class="icon-button topbar__menu" type="button" aria-controls="sidebar" aria-expanded="false" data-i18n-aria-label="nav.openMenu">
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+
+                <div class="brand-lockup brand-lockup--row">
+                    <img class="brand-lockup__flag" src="/assets/flag.png" alt="" width="56" height="36" decoding="async">
                     <div>
-                        <h1 class="text-2xl font-black text-gray-900 leading-none tracking-tighter">CivicGuide AI</h1>
-                        <p class="text-xs font-black text-saffron uppercase tracking-widest mt-1">Election Intelligence 🇮🇳</p>
+                        <p class="eyebrow" data-i18n="brand.department">Citizen Election Assistant</p>
+                        <h1 data-i18n="brand.name">CivicGuide AI</h1>
                     </div>
                 </div>
-                
-                <div class="flex items-center gap-6">
-                    <!-- 4 Lions Mini Logo -->
-                    <img src="/assets/watermark.png" alt="Logo" class="w-10 h-10 opacity-60 hidden md:block">
-                    
-                    <!-- Language Selector -->
-                    <div class="flex items-center gap-2 px-5 py-2.5 rounded-2xl border-2 border-saffron/20 bg-white shadow-sm hover:border-saffron/50 transition-all">
-                        <span class="text-xl">🌏</span>
-                        <select id="lang-selector" class="bg-transparent text-sm font-black text-gray-800 outline-none cursor-pointer">
-                            <option value="en">ENGLISH</option>
-                            <option value="hi">हिन्दी (HINDI)</option>
-                            <option value="te">తెలుగు (TELUGU)</option>
-                            <option value="ta">தமிழ் (TAMIL)</option>
-                            <option value="mr">मराठी (MARATHI)</option>
-                        </select>
-                    </div>
+
+                <div class="topbar__actions">
+                    <label class="visually-hidden" for="language-selector" data-i18n="topbar.languageLabel">Language</label>
+                    <select id="language-selector" class="language-select" aria-label="Language"></select>
+                    <button class="profile-chip" type="button" data-i18n-aria-label="topbar.profileAria">
+                        <span class="profile-chip__avatar" aria-hidden="true">A</span>
+                        <span class="profile-chip__label" data-i18n="topbar.admin">Admin</span>
+                    </button>
                 </div>
             </div>
         </header>
 
-        <!-- Main Content -->
-        <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-10 grid grid-cols-1 md:grid-cols-12 gap-10">
-            
-            <!-- Sidebar Navigation -->
-            <aside class="md:col-span-3">
-                <nav class="sticky top-32 space-y-3" aria-label="Sidebar">
-                    <button class="menu-btn w-full flex items-center gap-4 px-6 py-5 rounded-3xl text-left text-gray-700 hover:bg-white hover:text-saffron transition-all font-black group glass-card shadow-lg border-l-4 border-saffron" data-target="welcome-section">
-                        <span class="text-2xl group-hover:rotate-12 transition-transform">🏠</span> <span class="t-welcome">Home</span>
-                    </button>
-                    <button class="menu-btn w-full flex items-center gap-4 px-6 py-5 rounded-3xl text-left text-gray-700 hover:bg-white hover:text-blue-600 transition-all font-black group glass-card shadow-lg border-l-4 border-blue-400" data-target="how-to-vote">
-                        <span class="text-2xl group-hover:rotate-12 transition-transform">📚</span> <span class="t-how-to-vote">How to Vote</span>
-                    </button>
-                    <button class="menu-btn w-full flex items-center gap-4 px-6 py-5 rounded-3xl text-left text-gray-700 hover:bg-white hover:text-green-600 transition-all font-black group glass-card shadow-lg border-l-4 border-green" data-target="check-eligibility">
-                        <span class="text-2xl group-hover:rotate-12 transition-transform">✅</span> <span class="t-check-eligibility">Eligibility</span>
-                    </button>
-                    <button class="menu-btn w-full flex items-center gap-4 px-6 py-5 rounded-3xl text-left text-gray-700 hover:bg-white hover:text-navy transition-all font-black group glass-card shadow-lg border-l-4 border-navy" data-target="election-timeline">
-                        <span class="text-2xl group-hover:rotate-12 transition-transform">📅</span> <span class="t-timeline">Timeline</span>
-                    </button>
-                    <button class="menu-btn w-full flex items-center gap-4 px-6 py-5 rounded-3xl text-left text-gray-700 hover:bg-white hover:text-orange-600 transition-all font-black group glass-card shadow-lg border-l-4 border-saffron" data-target="knowledge-hub">
-                        <span class="text-2xl group-hover:rotate-12 transition-transform">📜</span> <span class="t-knowledge-hub">Knowledge</span>
-                    </button>
-                    <button class="menu-btn w-full flex items-center gap-4 px-6 py-5 rounded-3xl text-left text-white bg-navy transition-all font-black group shadow-xl hover:scale-105" data-target="ask-ai">
-                        <span class="text-2xl group-hover:scale-125 transition-transform">🤖</span> <span class="t-ask-ai">AI Coach</span>
-                    </button>
-                </nav>
+        <div class="app-shell">
+            <aside id="sidebar" class="sidebar" aria-label="Primary navigation">
+                <div class="sidebar__header">
+                    <img src="/assets/watermark.png" alt="" width="48" height="48" loading="lazy" decoding="async">
+                    <div class="sidebar__header-text">
+                        <p data-i18n="brand.name">CivicGuide AI</p>
+                        <span data-i18n="brand.tagline">Election guidance platform</span>
+                    </div>
+                </div>
+                <nav id="primary-nav" class="nav-list" aria-label="Primary navigation"></nav>
             </aside>
 
-            <!-- Dynamic Content Area -->
-            <div class="md:col-span-9 relative min-h-[700px]" id="content-area">
-                
-                <!-- Welcome / Dashboard Section -->
-                <section id="welcome-section" class="app-section space-y-10">
-                    <!-- Hero Card -->
-                    <div class="relative rounded-[3rem] overflow-hidden shadow-2xl h-80 md:h-[400px] group border-4 border-white">
-                        <img src="/assets/hero.png" alt="Hero" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms]">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-10 md:p-16">
-                            <img src="/assets/watermark.png" alt="4 Lions" class="w-16 mb-6 opacity-90 invert brightness-0">
-                            <h2 class="text-4xl md:text-6xl font-black text-white mb-4 leading-tight tracking-tighter t-welcome">Welcome to CivicGuide</h2>
-                            <p class="text-saffron text-xl md:text-2xl font-bold max-w-2xl t-welcome-desc">Your intelligent partner for the world's largest democratic exercise.</p>
-                        </div>
-                    </div>
+            <main id="main-content" class="main-content" tabindex="-1">
+                <section id="section-welcome" class="page-section is-active" data-section="welcome" aria-labelledby="welcome-title"></section>
+                <section id="section-vote" class="page-section" data-section="vote" aria-labelledby="vote-title"></section>
+                <section id="section-eligibility" class="page-section" data-section="eligibility" aria-labelledby="eligibility-title"></section>
+                <section id="section-timeline" class="page-section" data-section="timeline" aria-labelledby="timeline-title"></section>
+                <section id="section-knowledge" class="page-section" data-section="knowledge" aria-labelledby="knowledge-title"></section>
+                <section id="section-ai" class="page-section" data-section="ai" aria-labelledby="ai-title"></section>
+            </main>
+        </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <!-- Voter Card Mockup -->
-                        <div class="glass-panel rounded-[2.5rem] p-10 border-t-8 border-saffron flex flex-col justify-between">
-                            <div>
-                                <div class="flex justify-between items-start mb-8">
-                                    <img src="/assets/watermark.png" alt="Logo" class="w-12 h-12 opacity-30">
-                                    <span class="bg-navy text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md">Verified Digital Profile</span>
-                                </div>
-                                <h3 class="text-3xl font-black text-gray-900 mb-3 tracking-tight">My Voting Status</h3>
-                                <p id="voter-status-summary" class="text-gray-500 font-bold italic border-l-4 border-gray-100 pl-4 py-2">Please check eligibility in the sidebar to sync your profile.</p>
-                            </div>
-                            <button id="pledge-btn" class="mt-10 bg-green-600 hover:bg-green-700 text-white font-black py-5 rounded-3xl shadow-2xl transition-all active:scale-95 flex items-center justify-center gap-3 text-lg">
-                                🇮🇳 I PLEDGE TO VOTE! 🇮🇳
-                            </button>
-                        </div>
-
-                        <!-- Quick Fact -->
-                        <div class="glass-panel rounded-[2.5rem] p-10 border-t-8 border-green">
-                            <div class="flex items-center gap-4 mb-8">
-                                <span class="text-5xl">💡</span>
-                                <h3 class="text-3xl font-black text-gray-900 tracking-tight">Did You Know?</h3>
-                            </div>
-                            <p class="text-gray-600 leading-relaxed font-bold text-lg">India's voter population is larger than the entire population of Europe and North America combined! Every single vote matters.</p>
-                            <div class="mt-8 flex gap-3">
-                                <span class="px-4 py-1.5 bg-saffron text-white text-[10px] font-black rounded-full uppercase tracking-widest">Fact #1</span>
-                                <span class="px-4 py-1.5 bg-navy text-white text-[10px] font-black rounded-full uppercase tracking-widest">Democracy</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- How to Vote -->
-                <section id="how-to-vote" class="app-section hidden space-y-10">
-                    <div class="flex items-center gap-6 mb-4">
-                        <span class="text-6xl">📚</span>
-                        <h2 class="text-5xl font-black text-gray-900 tracking-tighter t-how-to-vote">How to Vote</h2>
-                    </div>
-                    <div id="steps-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-                </section>
-
-                <!-- Check Eligibility -->
-                <section id="check-eligibility" class="app-section hidden space-y-10">
-                    <div class="flex items-center gap-6 mb-4">
-                        <span class="text-6xl">✅</span>
-                        <h2 class="text-5xl font-black text-gray-900 tracking-tighter t-check-eligibility">Check Eligibility</h2>
-                    </div>
-                    <div class="glass-panel rounded-[3rem] p-10 md:p-16 border-b-8 border-saffron">
-                        <form id="eligibility-form" class="space-y-10 max-w-xl mx-auto">
-                            <div class="space-y-3">
-                                <label for="age" class="block text-xs font-black text-saffron uppercase tracking-[0.2em] t-age">Current Age</label>
-                                <input type="number" id="age" name="age" required min="1" max="130" class="w-full px-8 py-5 bg-white border-2 border-gray-100 rounded-3xl focus:border-saffron outline-none transition-all text-2xl font-black shadow-inner">
-                            </div>
-                            <div class="space-y-3">
-                                <label for="citizenship" class="block text-xs font-black text-saffron uppercase tracking-[0.2em] t-citizenship">Citizenship</label>
-                                <select id="citizenship" name="citizenship" required class="w-full px-8 py-5 bg-white border-2 border-gray-100 rounded-3xl focus:border-saffron outline-none transition-all text-xl font-black shadow-inner appearance-none">
-                                    <option value="" class="t-select">SELECT STATUS...</option>
-                                    <option value="indian-citizen" class="t-citizen">🇮🇳 INDIAN CITIZEN</option>
-                                    <option value="non-citizen" class="t-non-citizen">🌎 NON-CITIZEN / NRI</option>
-                                </select>
-                            </div>
-                            <div class="space-y-3">
-                                <label for="registration" class="block text-xs font-black text-saffron uppercase tracking-[0.2em] t-registration">Voter Registration</label>
-                                <select id="registration" name="registration" required class="w-full px-8 py-5 bg-white border-2 border-gray-100 rounded-3xl focus:border-saffron outline-none transition-all text-xl font-black shadow-inner appearance-none">
-                                    <option value="" class="t-select">SELECT STATUS...</option>
-                                    <option value="registered" class="t-registered">REGISTERED TO VOTE</option>
-                                    <option value="not-registered" class="t-not-registered">NOT REGISTERED YET</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="w-full bg-navy hover:bg-black text-white font-black py-6 rounded-3xl shadow-2xl transition-all active:scale-95 t-check-btn text-lg uppercase tracking-widest">Verify My Eligibility</button>
-                        </form>
-                        <div id="eligibility-result" class="hidden mt-12 p-10 rounded-[2.5rem] border-l-8 font-black"></div>
-                    </div>
-                </section>
-
-                <!-- Election Timeline -->
-                <section id="election-timeline" class="app-section hidden space-y-10">
-                    <div class="flex items-center gap-6 mb-4">
-                        <span class="text-6xl">📅</span>
-                        <h2 class="text-5xl font-black text-gray-900 tracking-tighter t-timeline">Election Timeline</h2>
-                    </div>
-                    <div class="glass-panel rounded-[3rem] p-12 shadow-2xl">
-                        <ul class="space-y-16 relative border-l-8 border-gray-50 ml-10">
-                            <li class="pl-16 relative group">
-                                <span class="absolute -left-[1.25rem] top-0 w-8 h-8 rounded-full bg-saffron border-8 border-white shadow-xl group-hover:scale-150 transition-transform duration-500"></span>
-                                <h3 class="text-2xl font-black text-gray-900 t-months-before uppercase tracking-tight">Months Before</h3>
-                                <p class="text-gray-500 mt-3 font-bold text-lg t-months-desc">ECI announces dates and Model Code of Conduct begins.</p>
-                            </li>
-                            <li class="pl-16 relative group">
-                                <span class="absolute -left-[1.25rem] top-0 w-8 h-8 rounded-full bg-blue-500 border-8 border-white shadow-xl group-hover:scale-150 transition-transform duration-500"></span>
-                                <h3 class="text-2xl font-black text-gray-900 t-weeks-before uppercase tracking-tight">Weeks Before</h3>
-                                <p class="text-gray-500 mt-3 font-bold text-lg t-weeks-desc">Campaigning and voter slip distribution.</p>
-                            </li>
-                            <li class="pl-16 relative group">
-                                <span class="absolute -left-[1.25rem] top-0 w-8 h-8 rounded-full bg-navy border-8 border-white shadow-xl group-hover:scale-150 transition-transform duration-500"></span>
-                                <h3 class="text-2xl font-black text-gray-900 t-48h-before uppercase tracking-tight">48 Hours Before</h3>
-                                <p class="text-gray-500 mt-3 font-bold text-lg t-48h-desc">Silence period begins.</p>
-                            </li>
-                            <li class="pl-16 relative group">
-                                <span class="absolute -left-[1.25rem] top-0 w-8 h-8 rounded-full bg-green border-8 border-white shadow-xl group-hover:scale-150 transition-transform duration-500"></span>
-                                <h3 class="text-2xl font-black text-gray-900 t-polling-day uppercase tracking-tight">Polling Day</h3>
-                                <p class="text-gray-500 mt-3 font-bold text-lg t-polling-desc">Voting via EVM and VVPAT.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Knowledge Hub -->
-                <section id="knowledge-hub" class="app-section hidden space-y-10">
-                    <div class="flex items-center gap-6 mb-4">
-                        <span class="text-6xl">📜</span>
-                        <h2 class="text-5xl font-black text-gray-900 tracking-tighter t-knowledge-hub">Knowledge Hub</h2>
-                    </div>
-                    <div id="knowledge-container" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
-                </section>
-
-                <!-- Ask AI -->
-                <section id="ask-ai" class="app-section hidden space-y-10 flex flex-col h-full min-h-[750px]">
-                    <div class="flex items-center justify-between gap-6 mb-4">
-                        <div class="flex items-center gap-6">
-                            <span class="text-7xl">🤖</span>
-                            <div>
-                                <h2 class="text-5xl font-black text-gray-900 tracking-tighter t-ask-ai">AI Coach</h2>
-                                <p class="text-saffron font-black uppercase text-xs tracking-[0.3em] mt-1 t-ask-desc">Powered by Gemini 2.5 Flash</p>
-                            </div>
-                        </div>
-                        <button id="clear-chat" class="p-4 bg-gray-100 hover:bg-red-50 hover:text-red-600 rounded-3xl transition-all active:scale-90 shadow-sm">🗑️</button>
-                    </div>
-
-                    <div id="chat-history" class="flex-grow glass-panel rounded-[3rem] p-10 overflow-y-auto space-y-8 max-h-[600px] border-b-8 border-navy">
-                        <div class="flex justify-start">
-                            <div class="bg-gray-100 text-gray-800 rounded-[2.5rem] rounded-tl-sm px-8 py-6 max-w-[85%] font-bold text-lg shadow-sm">
-                                Namaste! I am your AI Election Coach. I am here to help you navigate the Indian electoral system with logic and facts. How can I guide you today?
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="ai-loading" class="hidden px-6">
-                        <div class="flex items-center gap-4 text-navy font-black uppercase text-xs tracking-widest">
-                            <div class="flex space-x-1.5">
-                                <div class="w-2.5 h-2.5 bg-saffron rounded-full animate-bounce" style="animation-delay: 0ms"></div>
-                                <div class="w-2.5 h-2.5 bg-navy rounded-full animate-bounce" style="animation-delay: 150ms"></div>
-                                <div class="w-2.5 h-2.5 bg-green rounded-full animate-bounce" style="animation-delay: 300ms"></div>
-                            </div>
-                            <span class="t-thinking">Coach is reflecting...</span>
-                        </div>
-                    </div>
-
-                    <form id="ai-form" class="relative">
-                        <textarea id="question" name="question" rows="3" class="w-full px-10 py-8 pr-28 glass-panel rounded-[2.5rem] focus:ring-8 focus:ring-saffron/10 outline-none resize-none font-black text-gray-900 text-lg placeholder-gray-400 shadow-2xl" placeholder="Ask your coach..." required maxlength="500"></textarea>
-                        <button type="submit" id="ask-btn" class="absolute right-6 bottom-6 bg-saffron hover:bg-orange-600 text-white w-16 h-16 rounded-[1.5rem] shadow-2xl transition-all active:scale-90 flex items-center justify-center">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                        </button>
-                    </form>
-                </section>
-                
-            </div>
-        </main>
-
-        <footer class="mt-auto py-12 bg-white/80 backdrop-blur-xl border-t-8 border-green">
-            <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-10 text-center md:text-left">
-                <div class="flex items-center gap-6">
-                    <img src="/assets/watermark.png" alt="Logo" class="w-16 opacity-40">
+        <footer class="site-footer">
+            <div class="site-footer__inner">
+                <div class="brand-lockup brand-lockup--row">
+                    <img class="brand-lockup__mark brand-lockup__mark--small" src="/assets/watermark.png" alt="" width="40" height="40" loading="lazy" decoding="async">
                     <div>
-                        <h4 class="font-black text-gray-900 text-2xl tracking-tighter">CivicGuide AI</h4>
-                        <p class="text-gray-400 font-bold uppercase text-[10px] tracking-[0.4em]">Indian Democracy Portal</p>
+                        <strong data-i18n="brand.name">CivicGuide AI</strong>
+                        <p data-i18n="footer.description">Trusted, accessible election guidance for every citizen.</p>
                     </div>
                 </div>
-                <div class="flex gap-10">
-                    <a href="#" class="text-xs font-black text-gray-400 hover:text-saffron uppercase tracking-widest transition-colors">ECI Portal</a>
-                    <a href="#" class="text-xs font-black text-gray-400 hover:text-saffron uppercase tracking-widest transition-colors">Voter Rights</a>
+                <div class="site-footer__links">
+                    <a href="https://www.eci.gov.in/" target="_blank" rel="noreferrer" data-i18n="footer.eci">Election Commission of India</a>
+                    <a href="https://voters.eci.gov.in/" target="_blank" rel="noreferrer" data-i18n="footer.voterPortal">Voter Services Portal</a>
                 </div>
-                <p class="text-[10px] font-black text-gray-300 uppercase tracking-[0.5em] animate-pulse">Satyameva Jayate</p>
             </div>
         </footer>
     </div>

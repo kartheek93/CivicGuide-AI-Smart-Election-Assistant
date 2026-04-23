@@ -14,7 +14,7 @@ export const isValidAge = (age) => {
  * @returns {boolean}
  */
 export const isValidQuestion = (question) => {
-    return question && typeof question === 'string' && question.trim().length > 0 && question.length <= 500;
+    return typeof question === 'string' && question.trim().length > 0 && question.length <= 500;
 };
 
 /**

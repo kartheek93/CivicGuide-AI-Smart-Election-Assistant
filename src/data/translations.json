@@ -1,0 +1,1015 @@
+{
+  "en": {
+    "language": {
+      "nativeName": "English",
+      "englishName": "English"
+    },
+    "meta": {
+      "title": "CivicGuide AI - Smart Election Assistant",
+      "description": "CivicGuide AI helps citizens understand voting, eligibility, election timelines, and trusted election knowledge."
+    },
+    "brand": {
+      "name": "CivicGuide AI",
+      "tagline": "Election guidance platform",
+      "department": "Citizen Election Assistant"
+    },
+    "accessibility": {
+      "skipLink": "Skip to main content"
+    },
+    "login": {
+      "portalLabel": "Secure Admin Portal",
+      "subtitle": "A trusted digital assistant for Indian election guidance.",
+      "passwordLabel": "Administrator password",
+      "help": "Enter your authorized administrator credential to continue.",
+      "button": "Enter secure portal",
+      "loading": "Verifying access..."
+    },
+    "topbar": {
+      "languageLabel": "Language",
+      "admin": "Admin",
+      "profileAria": "Admin profile and access"
+    },
+    "nav": {
+      "primaryAria": "Primary navigation",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "items": {
+        "welcome": {
+          "label": "Home",
+          "description": "Dashboard"
+        },
+        "vote": {
+          "label": "How to Vote",
+          "description": "Step guide"
+        },
+        "eligibility": {
+          "label": "Eligibility",
+          "description": "Check status"
+        },
+        "timeline": {
+          "label": "Timeline",
+          "description": "Election phases"
+        },
+        "knowledge": {
+          "label": "Knowledge",
+          "description": "Civic facts"
+        },
+        "ai": {
+          "label": "AI Coach",
+          "description": "Ask questions"
+        }
+      }
+    },
+    "footer": {
+      "description": "Trusted, accessible election guidance for every citizen.",
+      "eci": "Election Commission of India",
+      "voterPortal": "Voter Services Portal"
+    },
+    "common": {
+      "loading": "Loading content",
+      "stepNumber": "Step {number}"
+    },
+    "errors": {
+      "loginInvalid": "Invalid password. Please check your credential and try again.",
+      "network": "Server connection failed. Please try again.",
+      "invalidQuestion": "Please enter a question between 1 and 500 characters.",
+      "coachOffline": "The AI Coach is temporarily unavailable. Please try again shortly."
+    },
+    "sections": {
+      "welcome": {
+        "title": "Your Trusted Election Companion",
+        "subtitle": "Clear, accessible, multilingual guidance for participating confidently in Indian democracy.",
+        "heroAlt": "Citizens participating in a democratic voting process",
+        "primaryCta": "Check eligibility",
+        "secondaryCta": "Ask AI Coach",
+        "metricsAria": "CivicGuide platform highlights",
+        "metrics": [
+          {
+            "value": "5",
+            "label": "Languages supported"
+          },
+          {
+            "value": "24x7",
+            "label": "Election guidance"
+          },
+          {
+            "value": "WCAG",
+            "label": "Accessible by design"
+          }
+        ],
+        "cards": [
+          {
+            "title": "Government-grade clarity",
+            "description": "Information is organized into plain-language steps, timelines, and verified civic concepts."
+          },
+          {
+            "title": "Responsive everywhere",
+            "description": "The experience adapts from mobile screens to tablets and desktop dashboards."
+          }
+        ],
+        "status": {
+          "notCheckedBadge": "Not checked",
+          "needsActionBadge": "Action needed",
+          "eligibleBadge": "Eligible",
+          "emptyTitle": "My voting status",
+          "emptySummary": "Check your eligibility to create a private voting readiness summary.",
+          "pledge": "I pledge to vote",
+          "pledged": "Pledge recorded"
+        }
+      },
+      "vote": {
+        "title": "How to Vote",
+        "subtitle": "A simple booth-ready checklist for first-time and returning voters.",
+        "steps": [
+          {
+            "step": 1,
+            "title": "Check the electoral roll",
+            "description": "Confirm your name appears on the official voter list for your constituency."
+          },
+          {
+            "step": 2,
+            "title": "Locate your polling booth",
+            "description": "Use your voter slip or voter services portal to find the assigned polling station."
+          },
+          {
+            "step": 3,
+            "title": "Carry approved identification",
+            "description": "Bring your EPIC voter ID or another Election Commission approved photo ID."
+          },
+          {
+            "step": 4,
+            "title": "Cast your vote on the EVM",
+            "description": "Press the button beside your preferred candidate or NOTA on the voting machine."
+          },
+          {
+            "step": 5,
+            "title": "Verify through VVPAT",
+            "description": "Check the VVPAT slip display and complete the process after the ink mark is applied."
+          }
+        ]
+      },
+      "eligibility": {
+        "title": "Check Eligibility",
+        "subtitle": "Answer three quick questions to understand your basic voting readiness.",
+        "form": {
+          "age": "Current age",
+          "citizenship": "Citizenship",
+          "registration": "Voter registration",
+          "selectPlaceholder": "Select status",
+          "indianCitizen": "Indian citizen",
+          "nonCitizen": "Non-citizen / NRI",
+          "registered": "Registered to vote",
+          "notRegistered": "Not registered yet",
+          "submit": "Verify my eligibility"
+        },
+        "results": {
+          "eligibleTitle": "You appear eligible",
+          "notEligibleTitle": "Review required",
+          "eligible": "Great news. You appear eligible to vote. Carry your EPIC voter ID or another approved photo ID to the polling booth.",
+          "age": "You must be at least 18 years old on or before the qualifying date.",
+          "citizenship": "You must be an Indian citizen to vote in Indian elections.",
+          "registration": "You meet the basic age and citizenship requirements, but you must register on the electoral roll before voting.",
+          "invalidAge": "Enter a valid age between 1 and 130.",
+          "missingFields": "Please complete citizenship and registration details.",
+          "reviewDetails": "Please review your details and check official Election Commission guidance."
+        }
+      },
+      "timeline": {
+        "title": "Election Timeline",
+        "subtitle": "Understand the major phases citizens usually see during an election cycle.",
+        "items": [
+          {
+            "title": "Months before polling",
+            "description": "The Election Commission announces dates and the Model Code of Conduct comes into effect."
+          },
+          {
+            "title": "Weeks before polling",
+            "description": "Campaigning, voter awareness, booth preparation, and voter slip distribution take place."
+          },
+          {
+            "title": "48 hours before polling",
+            "description": "The silence period begins so voters can decide without last-minute campaign pressure."
+          },
+          {
+            "title": "Polling day",
+            "description": "Voters cast ballots using EVMs and verify selections through VVPAT."
+          }
+        ]
+      },
+      "knowledge": {
+        "title": "Knowledge Hub",
+        "subtitle": "Quick, reliable civic explainers built for clarity and confidence.",
+        "cards": [
+          {
+            "category": "Voter ID",
+            "title": "EPIC is an identity document",
+            "description": "An EPIC card helps verify identity, but your name must also be present on the electoral roll."
+          },
+          {
+            "category": "Rights",
+            "title": "No one can force your vote",
+            "description": "Your vote is private. You can report intimidation, bribery, or pressure to election authorities."
+          },
+          {
+            "category": "Polling Booth",
+            "title": "Accessibility support is available",
+            "description": "Polling stations can provide assistance for senior citizens and voters with disabilities."
+          },
+          {
+            "category": "Security",
+            "title": "EVM and VVPAT work together",
+            "description": "The VVPAT slip gives voters a brief visual confirmation of the selection made on the EVM."
+          }
+        ]
+      },
+      "ai": {
+        "title": "AI Coach",
+        "subtitle": "Ask plain-language election questions and get contextual guidance.",
+        "clearChat": "Clear chat",
+        "chatAria": "AI Coach chat window",
+        "quickActionsAria": "Quick AI Coach prompts",
+        "inputLabel": "Ask the AI Coach",
+        "placeholder": "Ask about voting, eligibility, documents, or timelines...",
+        "send": "Send message",
+        "typing": "Coach is preparing an answer",
+        "emptyResponse": "No response was returned.",
+        "characterCount": "{count}/{max} characters",
+        "welcomeMessage": "Namaste. I am your AI Election Coach. Ask me about eligibility, voter registration, documents, polling day, or election timelines.",
+        "quickActions": [
+          {
+            "label": "Check eligibility",
+            "prompt": "Can you help me understand whether I am eligible to vote?"
+          },
+          {
+            "label": "Required documents",
+            "prompt": "Which documents can I carry to the polling booth?"
+          },
+          {
+            "label": "Find my booth",
+            "prompt": "How do I find my assigned polling booth?"
+          }
+        ]
+      }
+    }
+  },
+  "hi": {
+    "language": {
+      "nativeName": "हिन्दी",
+      "englishName": "Hindi"
+    },
+    "meta": {
+      "title": "CivicGuide AI - स्मार्ट चुनाव सहायक",
+      "description": "CivicGuide AI नागरिकों को मतदान, पात्रता, चुनाव समयरेखा और भरोसेमंद चुनाव जानकारी समझने में मदद करता है।"
+    },
+    "brand": {
+      "name": "CivicGuide AI",
+      "tagline": "चुनाव मार्गदर्शन मंच",
+      "department": "नागरिक चुनाव सहायक"
+    },
+    "accessibility": {
+      "skipLink": "मुख्य सामग्री पर जाएं"
+    },
+    "login": {
+      "portalLabel": "सुरक्षित एडमिन पोर्टल",
+      "subtitle": "भारतीय चुनाव मार्गदर्शन के लिए भरोसेमंद डिजिटल सहायक।",
+      "passwordLabel": "एडमिन पासवर्ड",
+      "help": "जारी रखने के लिए अधिकृत एडमिन क्रेडेंशियल दर्ज करें।",
+      "button": "सुरक्षित पोर्टल खोलें",
+      "loading": "पहुंच सत्यापित हो रही है..."
+    },
+    "topbar": {
+      "languageLabel": "भाषा",
+      "admin": "एडमिन",
+      "profileAria": "एडमिन प्रोफाइल और पहुंच"
+    },
+    "nav": {
+      "primaryAria": "मुख्य नेविगेशन",
+      "openMenu": "मेनू खोलें",
+      "closeMenu": "मेनू बंद करें",
+      "items": {
+        "welcome": {
+          "label": "होम",
+          "description": "डैशबोर्ड"
+        },
+        "vote": {
+          "label": "मतदान कैसे करें",
+          "description": "चरण गाइड"
+        },
+        "eligibility": {
+          "label": "पात्रता",
+          "description": "स्थिति जांचें"
+        },
+        "timeline": {
+          "label": "समयरेखा",
+          "description": "चुनाव चरण"
+        },
+        "knowledge": {
+          "label": "ज्ञान",
+          "description": "नागरिक तथ्य"
+        },
+        "ai": {
+          "label": "AI कोच",
+          "description": "प्रश्न पूछें"
+        }
+      }
+    },
+    "footer": {
+      "description": "हर नागरिक के लिए भरोसेमंद और सुलभ चुनाव मार्गदर्शन।",
+      "eci": "भारत निर्वाचन आयोग",
+      "voterPortal": "मतदाता सेवा पोर्टल"
+    },
+    "common": {
+      "loading": "सामग्री लोड हो रही है",
+      "stepNumber": "चरण {number}"
+    },
+    "errors": {
+      "loginInvalid": "पासवर्ड अमान्य है। कृपया क्रेडेंशियल जांचें और फिर प्रयास करें।",
+      "network": "सर्वर से कनेक्शन विफल रहा। कृपया फिर प्रयास करें।",
+      "invalidQuestion": "कृपया 1 से 500 अक्षरों के बीच प्रश्न दर्ज करें।",
+      "coachOffline": "AI कोच अस्थायी रूप से उपलब्ध नहीं है। कृपया थोड़ी देर बाद प्रयास करें।"
+    },
+    "sections": {
+      "welcome": {
+        "title": "आपका भरोसेमंद चुनाव साथी",
+        "subtitle": "भारतीय लोकतंत्र में आत्मविश्वास से भाग लेने के लिए स्पष्ट, सुलभ और बहुभाषी मार्गदर्शन।",
+        "heroAlt": "लोकतांत्रिक मतदान प्रक्रिया में भाग लेते नागरिक",
+        "primaryCta": "पात्रता जांचें",
+        "secondaryCta": "AI कोच से पूछें",
+        "metricsAria": "CivicGuide मंच की मुख्य विशेषताएं",
+        "metrics": [
+          {
+            "value": "5",
+            "label": "समर्थित भाषाएं"
+          },
+          {
+            "value": "24x7",
+            "label": "चुनाव मार्गदर्शन"
+          },
+          {
+            "value": "WCAG",
+            "label": "सुलभ डिजाइन"
+          }
+        ],
+        "cards": [
+          {
+            "title": "सरकारी स्तर की स्पष्टता",
+            "description": "जानकारी को सरल भाषा के चरणों, समयरेखाओं और सत्यापित नागरिक अवधारणाओं में व्यवस्थित किया गया है।"
+          },
+          {
+            "title": "हर स्क्रीन पर उत्तरदायी",
+            "description": "अनुभव मोबाइल, टैबलेट और डेस्कटॉप डैशबोर्ड के अनुसार सहज रूप से बदलता है।"
+          }
+        ],
+        "status": {
+          "notCheckedBadge": "जांच नहीं हुई",
+          "needsActionBadge": "कार्रवाई जरूरी",
+          "eligibleBadge": "पात्र",
+          "emptyTitle": "मेरी मतदान स्थिति",
+          "emptySummary": "निजी मतदान तैयारी सारांश बनाने के लिए अपनी पात्रता जांचें।",
+          "pledge": "मैं मतदान की शपथ लेता हूं",
+          "pledged": "शपथ दर्ज हुई"
+        }
+      },
+      "vote": {
+        "title": "मतदान कैसे करें",
+        "subtitle": "पहली बार और नियमित मतदाताओं के लिए सरल मतदान केंद्र चेकलिस्ट।",
+        "steps": [
+          {
+            "step": 1,
+            "title": "मतदाता सूची जांचें",
+            "description": "पुष्टि करें कि आपके निर्वाचन क्षेत्र की आधिकारिक मतदाता सूची में आपका नाम है।"
+          },
+          {
+            "step": 2,
+            "title": "मतदान केंद्र खोजें",
+            "description": "अपने मतदाता पर्ची या मतदाता सेवा पोर्टल से निर्धारित मतदान केंद्र देखें।"
+          },
+          {
+            "step": 3,
+            "title": "मान्य पहचान पत्र साथ रखें",
+            "description": "EPIC मतदाता पहचान पत्र या निर्वाचन आयोग द्वारा स्वीकृत अन्य फोटो पहचान पत्र लाएं।"
+          },
+          {
+            "step": 4,
+            "title": "EVM पर वोट डालें",
+            "description": "अपने पसंदीदा उम्मीदवार या NOTA के सामने वाला बटन दबाएं।"
+          },
+          {
+            "step": 5,
+            "title": "VVPAT से पुष्टि करें",
+            "description": "VVPAT स्लिप डिस्प्ले जांचें और स्याही निशान के बाद प्रक्रिया पूरी करें।"
+          }
+        ]
+      },
+      "eligibility": {
+        "title": "पात्रता जांचें",
+        "subtitle": "अपनी बुनियादी मतदान तैयारी समझने के लिए तीन छोटे प्रश्नों का उत्तर दें।",
+        "form": {
+          "age": "वर्तमान आयु",
+          "citizenship": "नागरिकता",
+          "registration": "मतदाता पंजीकरण",
+          "selectPlaceholder": "स्थिति चुनें",
+          "indianCitizen": "भारतीय नागरिक",
+          "nonCitizen": "गैर-नागरिक / NRI",
+          "registered": "मतदान के लिए पंजीकृत",
+          "notRegistered": "अभी पंजीकृत नहीं",
+          "submit": "मेरी पात्रता सत्यापित करें"
+        },
+        "results": {
+          "eligibleTitle": "आप पात्र प्रतीत होते हैं",
+          "notEligibleTitle": "समीक्षा आवश्यक",
+          "eligible": "अच्छी खबर। आप मतदान के लिए पात्र प्रतीत होते हैं। मतदान केंद्र पर EPIC मतदाता पहचान पत्र या अन्य स्वीकृत फोटो ID साथ रखें।",
+          "age": "आपकी आयु पात्रता तिथि पर या उससे पहले कम से कम 18 वर्ष होनी चाहिए।",
+          "citizenship": "भारतीय चुनावों में मतदान के लिए भारतीय नागरिक होना आवश्यक है।",
+          "registration": "आप आयु और नागरिकता की बुनियादी शर्तें पूरी करते हैं, लेकिन मतदान से पहले मतदाता सूची में पंजीकरण जरूरी है।",
+          "invalidAge": "1 से 130 के बीच मान्य आयु दर्ज करें।",
+          "missingFields": "कृपया नागरिकता और पंजीकरण विवरण पूरा करें।",
+          "reviewDetails": "कृपया अपने विवरण की समीक्षा करें और निर्वाचन आयोग के आधिकारिक मार्गदर्शन को देखें।"
+        }
+      },
+      "timeline": {
+        "title": "चुनाव समयरेखा",
+        "subtitle": "चुनाव चक्र में नागरिकों को दिखने वाले प्रमुख चरण समझें।",
+        "items": [
+          {
+            "title": "मतदान से महीनों पहले",
+            "description": "निर्वाचन आयोग तारीखों की घोषणा करता है और आदर्श आचार संहिता लागू होती है।"
+          },
+          {
+            "title": "मतदान से हफ्तों पहले",
+            "description": "प्रचार, मतदाता जागरूकता, बूथ तैयारी और मतदाता पर्ची वितरण होता है।"
+          },
+          {
+            "title": "मतदान से 48 घंटे पहले",
+            "description": "मौन अवधि शुरू होती है ताकि मतदाता बिना अंतिम समय के प्रचार दबाव के निर्णय ले सकें।"
+          },
+          {
+            "title": "मतदान दिवस",
+            "description": "मतदाता EVM से वोट डालते हैं और VVPAT से चयन की पुष्टि करते हैं।"
+          }
+        ]
+      },
+      "knowledge": {
+        "title": "ज्ञान केंद्र",
+        "subtitle": "स्पष्टता और आत्मविश्वास के लिए तेज, भरोसेमंद नागरिक व्याख्याएं।",
+        "cards": [
+          {
+            "category": "मतदाता ID",
+            "title": "EPIC पहचान दस्तावेज है",
+            "description": "EPIC कार्ड पहचान सत्यापित करने में मदद करता है, लेकिन आपका नाम मतदाता सूची में होना भी जरूरी है।"
+          },
+          {
+            "category": "अधिकार",
+            "title": "कोई आपका वोट मजबूर नहीं कर सकता",
+            "description": "आपका वोट निजी है। धमकी, रिश्वत या दबाव की सूचना चुनाव अधिकारियों को दी जा सकती है।"
+          },
+          {
+            "category": "मतदान केंद्र",
+            "title": "सुलभता सहायता उपलब्ध है",
+            "description": "मतदान केंद्र वरिष्ठ नागरिकों और दिव्यांग मतदाताओं के लिए सहायता उपलब्ध करा सकते हैं।"
+          },
+          {
+            "category": "सुरक्षा",
+            "title": "EVM और VVPAT साथ काम करते हैं",
+            "description": "VVPAT स्लिप EVM पर किए गए चयन की थोड़ी देर के लिए दृश्य पुष्टि देती है।"
+          }
+        ]
+      },
+      "ai": {
+        "title": "AI कोच",
+        "subtitle": "सरल भाषा में चुनाव प्रश्न पूछें और संदर्भयुक्त मार्गदर्शन पाएं।",
+        "clearChat": "चैट साफ करें",
+        "chatAria": "AI कोच चैट विंडो",
+        "quickActionsAria": "AI कोच त्वरित प्रश्न",
+        "inputLabel": "AI कोच से पूछें",
+        "placeholder": "मतदान, पात्रता, दस्तावेज या समयरेखा के बारे में पूछें...",
+        "send": "संदेश भेजें",
+        "typing": "कोच उत्तर तैयार कर रहा है",
+        "emptyResponse": "कोई उत्तर नहीं मिला।",
+        "characterCount": "{count}/{max} अक्षर",
+        "welcomeMessage": "नमस्ते। मैं आपका AI चुनाव कोच हूं। पात्रता, मतदाता पंजीकरण, दस्तावेज, मतदान दिवस या चुनाव समयरेखा के बारे में पूछें।",
+        "quickActions": [
+          {
+            "label": "पात्रता जांचें",
+            "prompt": "क्या आप मुझे यह समझने में मदद कर सकते हैं कि मैं मतदान के लिए पात्र हूं या नहीं?"
+          },
+          {
+            "label": "जरूरी दस्तावेज",
+            "prompt": "मैं मतदान केंद्र पर कौन से दस्तावेज साथ ले जा सकता हूं?"
+          },
+          {
+            "label": "मेरा बूथ खोजें",
+            "prompt": "मैं अपना निर्धारित मतदान केंद्र कैसे खोजूं?"
+          }
+        ]
+      }
+    }
+  },
+  "te": {
+    "language": {
+      "nativeName": "తెలుగు",
+      "englishName": "Telugu"
+    },
+    "meta": {
+      "title": "CivicGuide AI - స్మార్ట్ ఎన్నికల సహాయకుడు",
+      "description": "CivicGuide AI ఓటింగ్, అర్హత, ఎన్నికల కాలక్రమం మరియు విశ్వసనీయ ఎన్నికల సమాచారాన్ని పౌరులు అర్థం చేసుకోవడంలో సహాయపడుతుంది."
+    },
+    "brand": {
+      "name": "CivicGuide AI",
+      "tagline": "ఎన్నికల మార్గదర్శక వేదిక",
+      "department": "పౌర ఎన్నికల సహాయకుడు"
+    },
+    "accessibility": {
+      "skipLink": "ప్రధాన విషయానికి వెళ్లండి"
+    },
+    "login": {
+      "portalLabel": "సురక్షిత అడ్మిన్ పోర్టల్",
+      "subtitle": "భారతీయ ఎన్నికల మార్గదర్శకానికి విశ్వసనీయ డిజిటల్ సహాయకుడు.",
+      "passwordLabel": "అడ్మిన్ పాస్‌వర్డ్",
+      "help": "కొనసాగడానికి మీ అధీకృత అడ్మిన్ వివరాన్ని నమోదు చేయండి.",
+      "button": "సురక్షిత పోర్టల్‌లోకి ప్రవేశించండి",
+      "loading": "ప్రవేశం ధృవీకరిస్తోంది..."
+    },
+    "topbar": {
+      "languageLabel": "భాష",
+      "admin": "అడ్మిన్",
+      "profileAria": "అడ్మిన్ ప్రొఫైల్ మరియు ప్రవేశం"
+    },
+    "nav": {
+      "primaryAria": "ప్రధాన నావిగేషన్",
+      "openMenu": "మెను తెరవండి",
+      "closeMenu": "మెను మూసివేయండి",
+      "items": {
+        "welcome": { "label": "హోమ్", "description": "డ్యాష్‌బోర్డ్" },
+        "vote": { "label": "ఎలా ఓటు వేయాలి", "description": "దశల గైడ్" },
+        "eligibility": { "label": "అర్హత", "description": "స్థితి తనిఖీ" },
+        "timeline": { "label": "కాలక్రమం", "description": "ఎన్నికల దశలు" },
+        "knowledge": { "label": "జ్ఞానం", "description": "పౌర విషయాలు" },
+        "ai": { "label": "AI కోచ్", "description": "ప్రశ్నలు అడగండి" }
+      }
+    },
+    "footer": {
+      "description": "ప్రతి పౌరునికి విశ్వసనీయమైన, అందుబాటులో ఉండే ఎన్నికల మార్గదర్శకం.",
+      "eci": "భారత ఎన్నికల సంఘం",
+      "voterPortal": "ఓటర్ సేవల పోర్టల్"
+    },
+    "common": {
+      "loading": "విషయం లోడ్ అవుతోంది",
+      "stepNumber": "దశ {number}"
+    },
+    "errors": {
+      "loginInvalid": "పాస్‌వర్డ్ చెల్లదు. దయచేసి వివరాన్ని తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.",
+      "network": "సర్వర్ కనెక్షన్ విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.",
+      "invalidQuestion": "దయచేసి 1 నుండి 500 అక్షరాల మధ్య ప్రశ్న నమోదు చేయండి.",
+      "coachOffline": "AI కోచ్ తాత్కాలికంగా అందుబాటులో లేదు. కొద్దిసేపటి తర్వాత ప్రయత్నించండి."
+    },
+    "sections": {
+      "welcome": {
+        "title": "మీ విశ్వసనీయ ఎన్నికల సహచరుడు",
+        "subtitle": "భారత ప్రజాస్వామ్యంలో ధైర్యంగా పాల్గొనడానికి స్పష్టమైన, అందుబాటులో ఉండే, బహుభాషా మార్గదర్శకం.",
+        "heroAlt": "ప్రజాస్వామ్య ఓటింగ్ ప్రక్రియలో పాల్గొంటున్న పౌరులు",
+        "primaryCta": "అర్హత తనిఖీ చేయండి",
+        "secondaryCta": "AI కోచ్‌ను అడగండి",
+        "metricsAria": "CivicGuide వేదిక ముఖ్యాంశాలు",
+        "metrics": [
+          { "value": "5", "label": "మద్దతు ఉన్న భాషలు" },
+          { "value": "24x7", "label": "ఎన్నికల మార్గదర్శకం" },
+          { "value": "WCAG", "label": "అందుబాటు డిజైన్" }
+        ],
+        "cards": [
+          {
+            "title": "ప్రభుత్వ స్థాయి స్పష్టత",
+            "description": "సమాచారం సరళమైన దశలు, కాలక్రమాలు మరియు ధృవీకరించిన పౌర భావనలుగా అమర్చబడింది."
+          },
+          {
+            "title": "ప్రతి స్క్రీన్‌కు స్పందన",
+            "description": "మొబైల్, టాబ్లెట్ మరియు డెస్క్‌టాప్ డ్యాష్‌బోర్డ్‌లకు అనుభవం సులభంగా సరిపోతుంది."
+          }
+        ],
+        "status": {
+          "notCheckedBadge": "తనిఖీ కాలేదు",
+          "needsActionBadge": "చర్య అవసరం",
+          "eligibleBadge": "అర్హులు",
+          "emptyTitle": "నా ఓటింగ్ స్థితి",
+          "emptySummary": "వ్యక్తిగత ఓటింగ్ సిద్ధత సారాంశం కోసం మీ అర్హతను తనిఖీ చేయండి.",
+          "pledge": "నేను ఓటు వేస్తానని ప్రతిజ్ఞ",
+          "pledged": "ప్రతిజ్ఞ నమోదైంది"
+        }
+      },
+      "vote": {
+        "title": "ఎలా ఓటు వేయాలి",
+        "subtitle": "మొదటిసారి మరియు మళ్లీ ఓటు వేసే వారికి సరళమైన పోలింగ్ బూత్ చెక్‌లిస్ట్.",
+        "steps": [
+          { "step": 1, "title": "ఎలక్టోరల్ రోల్ తనిఖీ చేయండి", "description": "మీ నియోజకవర్గ అధికారిక ఓటర్ జాబితాలో మీ పేరు ఉందని నిర్ధారించండి." },
+          { "step": 2, "title": "పోలింగ్ బూత్ కనుగొనండి", "description": "మీ ఓటర్ స్లిప్ లేదా ఓటర్ సేవల పోర్టల్ ద్వారా కేటాయించిన పోలింగ్ కేంద్రాన్ని తెలుసుకోండి." },
+          { "step": 3, "title": "ఆమోదిత గుర్తింపు పత్రం తీసుకెళ్లండి", "description": "EPIC ఓటర్ ID లేదా ఎన్నికల సంఘం ఆమోదించిన మరో ఫోటో ID తీసుకెళ్లండి." },
+          { "step": 4, "title": "EVMపై ఓటు వేయండి", "description": "మీ అభ్యర్థి లేదా NOTA పక్కన ఉన్న బటన్‌ను నొక్కండి." },
+          { "step": 5, "title": "VVPAT ద్వారా నిర్ధారించండి", "description": "VVPAT స్లిప్ డిస్ప్లేను చూసి, సిరా గుర్తు తర్వాత ప్రక్రియను పూర్తి చేయండి." }
+        ]
+      },
+      "eligibility": {
+        "title": "అర్హత తనిఖీ",
+        "subtitle": "మీ ప్రాథమిక ఓటింగ్ సిద్ధతను అర్థం చేసుకోవడానికి మూడు చిన్న ప్రశ్నలకు సమాధానం ఇవ్వండి.",
+        "form": {
+          "age": "ప్రస్తుత వయస్సు",
+          "citizenship": "పౌరసత్వం",
+          "registration": "ఓటర్ నమోదు",
+          "selectPlaceholder": "స్థితి ఎంచుకోండి",
+          "indianCitizen": "భారతీయ పౌరుడు",
+          "nonCitizen": "పౌరుడు కాదు / NRI",
+          "registered": "ఓటు వేయడానికి నమోదు అయ్యారు",
+          "notRegistered": "ఇంకా నమోదు కాలేదు",
+          "submit": "నా అర్హతను ధృవీకరించండి"
+        },
+        "results": {
+          "eligibleTitle": "మీరు అర్హులుగా కనిపిస్తున్నారు",
+          "notEligibleTitle": "సమీక్ష అవసరం",
+          "eligible": "మంచి వార్త. మీరు ఓటు వేయడానికి అర్హులుగా కనిపిస్తున్నారు. పోలింగ్ బూత్‌కు EPIC ఓటర్ ID లేదా మరొక ఆమోదిత ఫోటో ID తీసుకెళ్లండి.",
+          "age": "అర్హత తేదీ నాటికి మీ వయస్సు కనీసం 18 సంవత్సరాలు ఉండాలి.",
+          "citizenship": "భారత ఎన్నికల్లో ఓటు వేయడానికి భారతీయ పౌరుడు కావాలి.",
+          "registration": "మీరు వయస్సు మరియు పౌరసత్వ అవసరాలను పూర్తి చేస్తున్నారు, కానీ ఓటు వేయడానికి ముందు ఎలక్టోరల్ రోల్‌లో నమోదు కావాలి.",
+          "invalidAge": "1 నుండి 130 మధ్య సరైన వయస్సు నమోదు చేయండి.",
+          "missingFields": "దయచేసి పౌరసత్వం మరియు నమోదు వివరాలను పూర్తి చేయండి.",
+          "reviewDetails": "దయచేసి మీ వివరాలను సమీక్షించి అధికారిక ఎన్నికల సంఘ మార్గదర్శకాన్ని చూడండి."
+        }
+      },
+      "timeline": {
+        "title": "ఎన్నికల కాలక్రమం",
+        "subtitle": "ఎన్నికల చక్రంలో కనిపించే ప్రధాన దశలను అర్థం చేసుకోండి.",
+        "items": [
+          { "title": "పోలింగ్‌కు నెలల ముందు", "description": "ఎన్నికల సంఘం తేదీలను ప్రకటిస్తుంది మరియు మోడల్ కోడ్ ఆఫ్ కండక్ట్ అమలులోకి వస్తుంది." },
+          { "title": "పోలింగ్‌కు వారాల ముందు", "description": "ప్రచారం, ఓటర్ అవగాహన, బూత్ సిద్ధత మరియు ఓటర్ స్లిప్ పంపిణీ జరుగుతాయి." },
+          { "title": "పోలింగ్‌కు 48 గంటల ముందు", "description": "చివరి నిమిష ప్రచార ఒత్తిడి లేకుండా ఓటర్లు నిర్ణయం తీసుకునేందుకు మౌన కాలం ప్రారంభమవుతుంది." },
+          { "title": "పోలింగ్ రోజు", "description": "ఓటర్లు EVMలతో ఓటు వేసి VVPAT ద్వారా ఎంపికను ధృవీకరిస్తారు." }
+        ]
+      },
+      "knowledge": {
+        "title": "జ్ఞాన కేంద్రం",
+        "subtitle": "స్పష్టత మరియు నమ్మకానికి వేగవంతమైన, విశ్వసనీయ పౌర వివరణలు.",
+        "cards": [
+          { "category": "ఓటర్ ID", "title": "EPIC ఒక గుర్తింపు పత్రం", "description": "EPIC కార్డ్ గుర్తింపును ధృవీకరించడంలో సహాయపడుతుంది, కానీ మీ పేరు ఎలక్టోరల్ రోల్‌లో ఉండాలి." },
+          { "category": "హక్కులు", "title": "మీ ఓటును ఎవరూ బలవంతం చేయలేరు", "description": "మీ ఓటు గోప్యమైనది. బెదిరింపు, లంచం లేదా ఒత్తిడిని ఎన్నికల అధికారులకు నివేదించవచ్చు." },
+          { "category": "పోలింగ్ బూత్", "title": "అందుబాటు సహాయం లభిస్తుంది", "description": "పోలింగ్ కేంద్రాలు వృద్ధులు మరియు దివ్యాంగ ఓటర్లకు సహాయం అందించగలవు." },
+          { "category": "భద్రత", "title": "EVM మరియు VVPAT కలిసి పనిచేస్తాయి", "description": "VVPAT స్లిప్ EVMలో చేసిన ఎంపికకు కొద్దిసేపు దృశ్య ధృవీకరణ ఇస్తుంది." }
+        ]
+      },
+      "ai": {
+        "title": "AI కోచ్",
+        "subtitle": "సరళమైన భాషలో ఎన్నికల ప్రశ్నలు అడిగి సందర్భానుసార మార్గదర్శకం పొందండి.",
+        "clearChat": "చాట్ క్లియర్ చేయండి",
+        "chatAria": "AI కోచ్ చాట్ విండో",
+        "quickActionsAria": "AI కోచ్ త్వరిత ప్రశ్నలు",
+        "inputLabel": "AI కోచ్‌ను అడగండి",
+        "placeholder": "ఓటింగ్, అర్హత, పత్రాలు లేదా కాలక్రమం గురించి అడగండి...",
+        "send": "సందేశం పంపండి",
+        "typing": "కోచ్ సమాధానం సిద్ధం చేస్తున్నాడు",
+        "emptyResponse": "సమాధానం రాలేదు.",
+        "characterCount": "{count}/{max} అక్షరాలు",
+        "welcomeMessage": "నమస్తే. నేను మీ AI ఎన్నికల కోచ్. అర్హత, ఓటర్ నమోదు, పత్రాలు, పోలింగ్ రోజు లేదా ఎన్నికల కాలక్రమం గురించి అడగండి.",
+        "quickActions": [
+          { "label": "అర్హత తనిఖీ", "prompt": "నేను ఓటు వేయడానికి అర్హుడినో కాదో అర్థం చేసుకోవడంలో సహాయం చేయగలరా?" },
+          { "label": "అవసరమైన పత్రాలు", "prompt": "పోలింగ్ బూత్‌కు నేను ఏ పత్రాలు తీసుకెళ్లవచ్చు?" },
+          { "label": "నా బూత్ కనుగొనండి", "prompt": "నా కేటాయించిన పోలింగ్ బూత్‌ను ఎలా కనుగొనాలి?" }
+        ]
+      }
+    }
+  },
+  "ta": {
+    "language": {
+      "nativeName": "தமிழ்",
+      "englishName": "Tamil"
+    },
+    "meta": {
+      "title": "CivicGuide AI - ஸ்மார்ட் தேர்தல் உதவியாளர்",
+      "description": "CivicGuide AI வாக்குப்பதிவு, தகுதி, தேர்தல் காலவரிசை மற்றும் நம்பகமான தேர்தல் தகவலை குடிமக்கள் புரிந்துகொள்ள உதவுகிறது."
+    },
+    "brand": {
+      "name": "CivicGuide AI",
+      "tagline": "தேர்தல் வழிகாட்டல் தளம்",
+      "department": "குடிமக்கள் தேர்தல் உதவியாளர்"
+    },
+    "accessibility": {
+      "skipLink": "முக்கிய உள்ளடக்கத்துக்கு செல்லவும்"
+    },
+    "login": {
+      "portalLabel": "பாதுகாப்பான நிர்வாக தளம்",
+      "subtitle": "இந்திய தேர்தல் வழிகாட்டலுக்கான நம்பகமான டிஜிட்டல் உதவியாளர்.",
+      "passwordLabel": "நிர்வாக கடவுச்சொல்",
+      "help": "தொடர உங்கள் அங்கீகரிக்கப்பட்ட நிர்வாக தகவலை உள்ளிடவும்.",
+      "button": "பாதுகாப்பான தளத்துக்குள் செல்லவும்",
+      "loading": "அணுகல் சரிபார்க்கப்படுகிறது..."
+    },
+    "topbar": {
+      "languageLabel": "மொழி",
+      "admin": "நிர்வாகி",
+      "profileAria": "நிர்வாகி சுயவிவரம் மற்றும் அணுகல்"
+    },
+    "nav": {
+      "primaryAria": "முக்கிய வழிசெலுத்தல்",
+      "openMenu": "மெனுவைத் திறக்கவும்",
+      "closeMenu": "மெனுவை மூடவும்",
+      "items": {
+        "welcome": { "label": "முகப்பு", "description": "டாஷ்போர்டு" },
+        "vote": { "label": "வாக்களிப்பது எப்படி", "description": "படி வழிகாட்டி" },
+        "eligibility": { "label": "தகுதி", "description": "நிலை சரிபார்ப்பு" },
+        "timeline": { "label": "காலவரிசை", "description": "தேர்தல் கட்டங்கள்" },
+        "knowledge": { "label": "அறிவு", "description": "குடிமை தகவல்கள்" },
+        "ai": { "label": "AI பயிற்சியாளர்", "description": "கேள்விகள் கேளுங்கள்" }
+      }
+    },
+    "footer": {
+      "description": "ஒவ்வொரு குடிமகனுக்கும் நம்பகமான, அணுகக்கூடிய தேர்தல் வழிகாட்டல்.",
+      "eci": "இந்திய தேர்தல் ஆணையம்",
+      "voterPortal": "வாக்காளர் சேவை தளம்"
+    },
+    "common": {
+      "loading": "உள்ளடக்கம் ஏற்றப்படுகிறது",
+      "stepNumber": "படி {number}"
+    },
+    "errors": {
+      "loginInvalid": "கடவுச்சொல் தவறு. தகவலை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.",
+      "network": "சர்வர் இணைப்பு தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்.",
+      "invalidQuestion": "1 முதல் 500 எழுத்துகளுக்குள் ஒரு கேள்வியை உள்ளிடவும்.",
+      "coachOffline": "AI பயிற்சியாளர் தற்காலிகமாக கிடைக்கவில்லை. சிறிது நேரம் கழித்து முயற்சிக்கவும்."
+    },
+    "sections": {
+      "welcome": {
+        "title": "உங்கள் நம்பகமான தேர்தல் துணை",
+        "subtitle": "இந்திய ஜனநாயகத்தில் நம்பிக்கையுடன் பங்கேற்க தெளிவான, அணுகக்கூடிய, பல்மொழி வழிகாட்டல்.",
+        "heroAlt": "ஜனநாயக வாக்குப்பதிவு செயல்முறையில் பங்கேற்கும் குடிமக்கள்",
+        "primaryCta": "தகுதி சரிபார்க்கவும்",
+        "secondaryCta": "AI பயிற்சியாளரை கேளுங்கள்",
+        "metricsAria": "CivicGuide தளத்தின் முக்கிய அம்சங்கள்",
+        "metrics": [
+          { "value": "5", "label": "ஆதரிக்கப்படும் மொழிகள்" },
+          { "value": "24x7", "label": "தேர்தல் வழிகாட்டல்" },
+          { "value": "WCAG", "label": "அணுகலுக்கான வடிவமைப்பு" }
+        ],
+        "cards": [
+          {
+            "title": "அரசுத்தர தெளிவு",
+            "description": "தகவல் எளிய படிகள், காலவரிசைகள் மற்றும் சரிபார்க்கப்பட்ட குடிமை கருத்துகளாக ஒழுங்கமைக்கப்பட்டுள்ளது."
+          },
+          {
+            "title": "எல்லா திரைகளுக்கும் பொருந்தும்",
+            "description": "மொபைல், டேப்லெட் மற்றும் டெஸ்க்டாப் டாஷ்போர்ட்களுக்கு அனுபவம் இயல்பாக மாறுகிறது."
+          }
+        ],
+        "status": {
+          "notCheckedBadge": "சரிபார்க்கப்படவில்லை",
+          "needsActionBadge": "நடவடிக்கை தேவை",
+          "eligibleBadge": "தகுதி உள்ளது",
+          "emptyTitle": "என் வாக்கு நிலை",
+          "emptySummary": "தனிப்பட்ட வாக்கு தயார்நிலை சுருக்கத்துக்காக உங்கள் தகுதியை சரிபார்க்கவும்.",
+          "pledge": "நான் வாக்களிப்பேன் என உறுதி செய்கிறேன்",
+          "pledged": "உறுதி பதிவு செய்யப்பட்டது"
+        }
+      },
+      "vote": {
+        "title": "வாக்களிப்பது எப்படி",
+        "subtitle": "முதல் முறை மற்றும் மீண்டும் வாக்களிக்கும் வாக்காளர்களுக்கான எளிய வாக்குச்சாவடி பட்டியல்.",
+        "steps": [
+          { "step": 1, "title": "வாக்காளர் பட்டியலை சரிபார்க்கவும்", "description": "உங்கள் தொகுதியின் அதிகாரப்பூர்வ வாக்காளர் பட்டியலில் உங்கள் பெயர் உள்ளதா என்பதை உறுதிப்படுத்தவும்." },
+          { "step": 2, "title": "வாக்குச்சாவடியை கண்டறியவும்", "description": "வாக்காளர் சீட்டு அல்லது வாக்காளர் சேவை தளத்தின் மூலம் ஒதுக்கப்பட்ட வாக்குச்சாவடியை கண்டறியவும்." },
+          { "step": 3, "title": "அங்கீகரிக்கப்பட்ட அடையாளத்தை எடுத்துச் செல்லவும்", "description": "EPIC வாக்காளர் ID அல்லது தேர்தல் ஆணையம் அங்கீகரித்த மற்றொரு புகைப்பட ID எடுத்துச் செல்லவும்." },
+          { "step": 4, "title": "EVM-ல் வாக்களிக்கவும்", "description": "உங்கள் விருப்பமான வேட்பாளர் அல்லது NOTA-க்கு அருகிலுள்ள பொத்தானை அழுத்தவும்." },
+          { "step": 5, "title": "VVPAT மூலம் உறுதிசெய்யவும்", "description": "VVPAT சீட்டு காட்சியை பார்த்து, மை குறி வைக்கப்பட்ட பின் செயல்முறையை முடிக்கவும்." }
+        ]
+      },
+      "eligibility": {
+        "title": "தகுதி சரிபார்ப்பு",
+        "subtitle": "உங்கள் அடிப்படை வாக்கு தயார்நிலையை அறிய மூன்று விரைவு கேள்விகளுக்கு பதிலளிக்கவும்.",
+        "form": {
+          "age": "தற்போதைய வயது",
+          "citizenship": "குடியுரிமை",
+          "registration": "வாக்காளர் பதிவு",
+          "selectPlaceholder": "நிலையைத் தேர்ந்தெடுக்கவும்",
+          "indianCitizen": "இந்திய குடிமகன்",
+          "nonCitizen": "குடிமகன் அல்ல / NRI",
+          "registered": "வாக்களிக்க பதிவு செய்தவர்",
+          "notRegistered": "இன்னும் பதிவு செய்யவில்லை",
+          "submit": "என் தகுதியை சரிபார்க்கவும்"
+        },
+        "results": {
+          "eligibleTitle": "நீங்கள் தகுதியானவர் போல தெரிகிறது",
+          "notEligibleTitle": "சரிபார்ப்பு தேவை",
+          "eligible": "நல்ல செய்தி. நீங்கள் வாக்களிக்க தகுதியானவர் போல தெரிகிறது. வாக்குச்சாவடிக்கு EPIC வாக்காளர் ID அல்லது மற்றொரு அங்கீகரிக்கப்பட்ட புகைப்பட ID எடுத்துச் செல்லவும்.",
+          "age": "தகுதி தேதிக்குள் அல்லது அதற்கு முன் நீங்கள் குறைந்தது 18 வயது இருக்க வேண்டும்.",
+          "citizenship": "இந்திய தேர்தல்களில் வாக்களிக்க இந்திய குடிமகனாக இருக்க வேண்டும்.",
+          "registration": "வயது மற்றும் குடியுரிமை நிபந்தனைகள் பூர்த்தியாகின்றன, ஆனால் வாக்களிப்பதற்கு முன் வாக்காளர் பட்டியலில் பதிவு செய்ய வேண்டும்.",
+          "invalidAge": "1 முதல் 130 வரை சரியான வயதை உள்ளிடவும்.",
+          "missingFields": "குடியுரிமை மற்றும் பதிவு விவரங்களை முழுமையாக நிரப்பவும்.",
+          "reviewDetails": "உங்கள் விவரங்களை சரிபார்த்து அதிகாரப்பூர்வ தேர்தல் ஆணைய வழிகாட்டலை பார்க்கவும்."
+        }
+      },
+      "timeline": {
+        "title": "தேர்தல் காலவரிசை",
+        "subtitle": "தேர்தல் சுற்றத்தில் குடிமக்கள் காணும் முக்கிய கட்டங்களை புரிந்துகொள்ளுங்கள்.",
+        "items": [
+          { "title": "வாக்குப்பதிவுக்கு மாதங்கள் முன்", "description": "தேர்தல் ஆணையம் தேதிகளை அறிவித்து மாதிரி நடத்தை விதிமுறை அமலுக்கு வருகிறது." },
+          { "title": "வாக்குப்பதிவுக்கு வாரங்கள் முன்", "description": "பிரச்சாரம், வாக்காளர் விழிப்புணர்வு, சாவடி தயாரிப்பு மற்றும் வாக்காளர் சீட்டு விநியோகம் நடைபெறுகின்றன." },
+          { "title": "வாக்குப்பதிவுக்கு 48 மணி நேரம் முன்", "description": "கடைசி நேர பிரச்சார அழுத்தமின்றி வாக்காளர்கள் முடிவு செய்ய அமைதி காலம் தொடங்குகிறது." },
+          { "title": "வாக்குப்பதிவு நாள்", "description": "வாக்காளர்கள் EVM மூலம் வாக்களித்து VVPAT மூலம் தேர்வை உறுதிசெய்கிறார்கள்." }
+        ]
+      },
+      "knowledge": {
+        "title": "அறிவு மையம்",
+        "subtitle": "தெளிவும் நம்பிக்கையும் தரும் விரைவு, நம்பகமான குடிமை விளக்கங்கள்.",
+        "cards": [
+          { "category": "வாக்காளர் ID", "title": "EPIC ஒரு அடையாள ஆவணம்", "description": "EPIC அட்டை அடையாளத்தை சரிபார்க்க உதவும், ஆனால் உங்கள் பெயர் வாக்காளர் பட்டியலிலும் இருக்க வேண்டும்." },
+          { "category": "உரிமைகள்", "title": "உங்கள் வாக்கை யாரும் கட்டாயப்படுத்த முடியாது", "description": "உங்கள் வாக்கு தனிப்பட்டது. மிரட்டல், லஞ்சம் அல்லது அழுத்தத்தை தேர்தல் அதிகாரிகளிடம் புகார் செய்யலாம்." },
+          { "category": "வாக்குச்சாவடி", "title": "அணுகல் உதவி கிடைக்கும்", "description": "வாக்குச்சாவடிகள் மூத்த குடிமக்கள் மற்றும் மாற்றுத்திறனாளி வாக்காளர்களுக்கு உதவி வழங்கலாம்." },
+          { "category": "பாதுகாப்பு", "title": "EVM மற்றும் VVPAT சேர்ந்து செயல்படும்", "description": "VVPAT சீட்டு EVM-ல் செய்த தேர்வை குறுகிய நேரம் காட்சிப்படுத்தி உறுதிசெய்கிறது." }
+        ]
+      },
+      "ai": {
+        "title": "AI பயிற்சியாளர்",
+        "subtitle": "எளிய மொழியில் தேர்தல் கேள்விகளை கேட்டு சூழலுடன் கூடிய வழிகாட்டலை பெறுங்கள்.",
+        "clearChat": "சாட்டை அழிக்கவும்",
+        "chatAria": "AI பயிற்சியாளர் சாட் சாளரம்",
+        "quickActionsAria": "AI பயிற்சியாளர் விரைவு கேள்விகள்",
+        "inputLabel": "AI பயிற்சியாளரை கேளுங்கள்",
+        "placeholder": "வாக்குப்பதிவு, தகுதி, ஆவணங்கள் அல்லது காலவரிசை பற்றி கேளுங்கள்...",
+        "send": "செய்தி அனுப்பு",
+        "typing": "பயிற்சியாளர் பதிலை தயார் செய்கிறார்",
+        "emptyResponse": "பதில் எதுவும் கிடைக்கவில்லை.",
+        "characterCount": "{count}/{max} எழுத்துகள்",
+        "welcomeMessage": "வணக்கம். நான் உங்கள் AI தேர்தல் பயிற்சியாளர். தகுதி, வாக்காளர் பதிவு, ஆவணங்கள், வாக்குப்பதிவு நாள் அல்லது தேர்தல் காலவரிசை பற்றி கேளுங்கள்.",
+        "quickActions": [
+          { "label": "தகுதி சரிபார்ப்பு", "prompt": "நான் வாக்களிக்க தகுதியானவரா என்பதை புரிந்துகொள்ள உதவ முடியுமா?" },
+          { "label": "தேவையான ஆவணங்கள்", "prompt": "வாக்குச்சாவடிக்கு எந்த ஆவணங்களை எடுத்துச் செல்லலாம்?" },
+          { "label": "என் சாவடியை கண்டறி", "prompt": "எனக்கு ஒதுக்கப்பட்ட வாக்குச்சாவடியை எப்படி கண்டறிவது?" }
+        ]
+      }
+    }
+  },
+  "mr": {
+    "language": {
+      "nativeName": "मराठी",
+      "englishName": "Marathi"
+    },
+    "meta": {
+      "title": "CivicGuide AI - स्मार्ट निवडणूक सहाय्यक",
+      "description": "CivicGuide AI नागरिकांना मतदान, पात्रता, निवडणूक वेळापत्रक आणि विश्वासार्ह निवडणूक माहिती समजण्यास मदत करते."
+    },
+    "brand": {
+      "name": "CivicGuide AI",
+      "tagline": "निवडणूक मार्गदर्शन मंच",
+      "department": "नागरिक निवडणूक सहाय्यक"
+    },
+    "accessibility": {
+      "skipLink": "मुख्य मजकुराकडे जा"
+    },
+    "login": {
+      "portalLabel": "सुरक्षित अ‍ॅडमिन पोर्टल",
+      "subtitle": "भारतीय निवडणूक मार्गदर्शनासाठी विश्वासार्ह डिजिटल सहाय्यक.",
+      "passwordLabel": "अ‍ॅडमिन पासवर्ड",
+      "help": "पुढे जाण्यासाठी अधिकृत अ‍ॅडमिन माहिती प्रविष्ट करा.",
+      "button": "सुरक्षित पोर्टलमध्ये प्रवेश करा",
+      "loading": "प्रवेश तपासला जात आहे..."
+    },
+    "topbar": {
+      "languageLabel": "भाषा",
+      "admin": "अ‍ॅडमिन",
+      "profileAria": "अ‍ॅडमिन प्रोफाइल आणि प्रवेश"
+    },
+    "nav": {
+      "primaryAria": "मुख्य नेव्हिगेशन",
+      "openMenu": "मेनू उघडा",
+      "closeMenu": "मेनू बंद करा",
+      "items": {
+        "welcome": { "label": "होम", "description": "डॅशबोर्ड" },
+        "vote": { "label": "मतदान कसे करावे", "description": "टप्पा मार्गदर्शक" },
+        "eligibility": { "label": "पात्रता", "description": "स्थिती तपासा" },
+        "timeline": { "label": "वेळापत्रक", "description": "निवडणूक टप्पे" },
+        "knowledge": { "label": "ज्ञान", "description": "नागरिक माहिती" },
+        "ai": { "label": "AI कोच", "description": "प्रश्न विचारा" }
+      }
+    },
+    "footer": {
+      "description": "प्रत्येक नागरिकासाठी विश्वासार्ह आणि सुलभ निवडणूक मार्गदर्शन.",
+      "eci": "भारत निवडणूक आयोग",
+      "voterPortal": "मतदार सेवा पोर्टल"
+    },
+    "common": {
+      "loading": "मजकूर लोड होत आहे",
+      "stepNumber": "टप्पा {number}"
+    },
+    "errors": {
+      "loginInvalid": "पासवर्ड चुकीचा आहे. कृपया माहिती तपासा आणि पुन्हा प्रयत्न करा.",
+      "network": "सर्व्हर कनेक्शन अयशस्वी झाले. कृपया पुन्हा प्रयत्न करा.",
+      "invalidQuestion": "कृपया 1 ते 500 अक्षरांमधील प्रश्न प्रविष्ट करा.",
+      "coachOffline": "AI कोच तात्पुरता उपलब्ध नाही. कृपया थोड्या वेळाने प्रयत्न करा."
+    },
+    "sections": {
+      "welcome": {
+        "title": "तुमचा विश्वासार्ह निवडणूक साथी",
+        "subtitle": "भारतीय लोकशाहीत आत्मविश्वासाने सहभागी होण्यासाठी स्पष्ट, सुलभ, बहुभाषिक मार्गदर्शन.",
+        "heroAlt": "लोकशाही मतदान प्रक्रियेत सहभागी नागरिक",
+        "primaryCta": "पात्रता तपासा",
+        "secondaryCta": "AI कोचला विचारा",
+        "metricsAria": "CivicGuide मंचाची वैशिष्ट्ये",
+        "metrics": [
+          { "value": "5", "label": "समर्थित भाषा" },
+          { "value": "24x7", "label": "निवडणूक मार्गदर्शन" },
+          { "value": "WCAG", "label": "सुलभ डिझाइन" }
+        ],
+        "cards": [
+          {
+            "title": "सरकारी दर्जाची स्पष्टता",
+            "description": "माहिती सोप्या टप्प्यांमध्ये, वेळापत्रकांमध्ये आणि पडताळलेल्या नागरिक संकल्पनांमध्ये मांडली आहे."
+          },
+          {
+            "title": "प्रत्येक स्क्रीनवर प्रतिसादशील",
+            "description": "अनुभव मोबाइल, टॅबलेट आणि डेस्कटॉप डॅशबोर्डनुसार सहज जुळवून घेतो."
+          }
+        ],
+        "status": {
+          "notCheckedBadge": "तपासले नाही",
+          "needsActionBadge": "कारवाई आवश्यक",
+          "eligibleBadge": "पात्र",
+          "emptyTitle": "माझी मतदान स्थिती",
+          "emptySummary": "खाजगी मतदान तयारी सारांशासाठी तुमची पात्रता तपासा.",
+          "pledge": "मी मतदानाची शपथ घेतो",
+          "pledged": "शपथ नोंदली"
+        }
+      },
+      "vote": {
+        "title": "मतदान कसे करावे",
+        "subtitle": "पहिल्यांदा आणि पुन्हा मतदान करणाऱ्या मतदारांसाठी सोपी मतदान केंद्र चेकलिस्ट.",
+        "steps": [
+          { "step": 1, "title": "मतदार यादी तपासा", "description": "तुमच्या मतदारसंघाच्या अधिकृत मतदार यादीत तुमचे नाव आहे याची खात्री करा." },
+          { "step": 2, "title": "मतदान केंद्र शोधा", "description": "मतदार चिठ्ठी किंवा मतदार सेवा पोर्टल वापरून तुमचे नेमलेले मतदान केंद्र शोधा." },
+          { "step": 3, "title": "मान्य ओळखपत्र सोबत ठेवा", "description": "EPIC मतदार ID किंवा निवडणूक आयोगाने मान्य केलेले दुसरे फोटो ID घ्या." },
+          { "step": 4, "title": "EVMवर मतदान करा", "description": "तुमच्या पसंतीच्या उमेदवार किंवा NOTA समोरील बटण दाबा." },
+          { "step": 5, "title": "VVPATद्वारे पुष्टी करा", "description": "VVPAT स्लिप डिस्प्ले तपासा आणि शाईचा ठसा झाल्यानंतर प्रक्रिया पूर्ण करा." }
+        ]
+      },
+      "eligibility": {
+        "title": "पात्रता तपासा",
+        "subtitle": "तुमची मूलभूत मतदान तयारी समजण्यासाठी तीन छोटे प्रश्न उत्तर द्या.",
+        "form": {
+          "age": "सध्याचे वय",
+          "citizenship": "नागरिकत्व",
+          "registration": "मतदार नोंदणी",
+          "selectPlaceholder": "स्थिती निवडा",
+          "indianCitizen": "भारतीय नागरिक",
+          "nonCitizen": "गैर-नागरिक / NRI",
+          "registered": "मतदानासाठी नोंदणीकृत",
+          "notRegistered": "अद्याप नोंदणी नाही",
+          "submit": "माझी पात्रता तपासा"
+        },
+        "results": {
+          "eligibleTitle": "तुम्ही पात्र दिसता",
+          "notEligibleTitle": "पुनरावलोकन आवश्यक",
+          "eligible": "चांगली बातमी. तुम्ही मतदानासाठी पात्र दिसता. मतदान केंद्रावर EPIC मतदार ID किंवा अन्य मान्य फोटो ID सोबत ठेवा.",
+          "age": "पात्रता तारखेपर्यंत किंवा त्यापूर्वी तुमचे वय किमान 18 वर्षे असणे आवश्यक आहे.",
+          "citizenship": "भारतीय निवडणुकांमध्ये मतदानासाठी भारतीय नागरिक असणे आवश्यक आहे.",
+          "registration": "तुम्ही वय आणि नागरिकत्वाच्या अटी पूर्ण करता, पण मतदानापूर्वी मतदार यादीत नोंदणी आवश्यक आहे.",
+          "invalidAge": "1 ते 130 दरम्यान वैध वय प्रविष्ट करा.",
+          "missingFields": "कृपया नागरिकत्व आणि नोंदणी तपशील पूर्ण करा.",
+          "reviewDetails": "कृपया तुमचे तपशील तपासा आणि अधिकृत निवडणूक आयोग मार्गदर्शन पहा."
+        }
+      },
+      "timeline": {
+        "title": "निवडणूक वेळापत्रक",
+        "subtitle": "निवडणूक चक्रात नागरिकांना दिसणारे प्रमुख टप्पे समजून घ्या.",
+        "items": [
+          { "title": "मतदानाच्या काही महिने आधी", "description": "निवडणूक आयोग तारखा जाहीर करतो आणि आदर्श आचारसंहिता लागू होते." },
+          { "title": "मतदानाच्या काही आठवडे आधी", "description": "प्रचार, मतदार जागरूकता, बूथ तयारी आणि मतदार चिठ्ठी वितरण होते." },
+          { "title": "मतदानाच्या 48 तास आधी", "description": "शांतता कालावधी सुरू होतो, ज्यामुळे मतदार शेवटच्या क्षणीच्या प्रचार दबावाशिवाय निर्णय घेऊ शकतात." },
+          { "title": "मतदानाचा दिवस", "description": "मतदार EVMद्वारे मतदान करतात आणि VVPATद्वारे निवड पुष्टी करतात." }
+        ]
+      },
+      "knowledge": {
+        "title": "ज्ञान केंद्र",
+        "subtitle": "स्पष्टता आणि आत्मविश्वासासाठी जलद, विश्वासार्ह नागरिक स्पष्टीकरणे.",
+        "cards": [
+          { "category": "मतदार ID", "title": "EPIC हे ओळखपत्र आहे", "description": "EPIC कार्ड ओळख पडताळण्यास मदत करते, पण तुमचे नाव मतदार यादीत असणेही आवश्यक आहे." },
+          { "category": "हक्क", "title": "तुमचा मत कोणालाही जबरदस्ती करता येत नाही", "description": "तुमचा मत खाजगी आहे. धमकी, लाच किंवा दबाव निवडणूक अधिकाऱ्यांना कळवू शकता." },
+          { "category": "मतदान केंद्र", "title": "सुलभता सहाय्य उपलब्ध आहे", "description": "मतदान केंद्रे ज्येष्ठ नागरिक आणि दिव्यांग मतदारांसाठी सहाय्य देऊ शकतात." },
+          { "category": "सुरक्षा", "title": "EVM आणि VVPAT एकत्र काम करतात", "description": "VVPAT स्लिप EVMवरील निवडीची थोड्या वेळासाठी दृश्य पुष्टी देते." }
+        ]
+      },
+      "ai": {
+        "title": "AI कोच",
+        "subtitle": "सोप्या भाषेत निवडणूक प्रश्न विचारा आणि संदर्भासह मार्गदर्शन मिळवा.",
+        "clearChat": "चॅट साफ करा",
+        "chatAria": "AI कोच चॅट विंडो",
+        "quickActionsAria": "AI कोच जलद प्रश्न",
+        "inputLabel": "AI कोचला विचारा",
+        "placeholder": "मतदान, पात्रता, दस्तऐवज किंवा वेळापत्रकाबद्दल विचारा...",
+        "send": "संदेश पाठवा",
+        "typing": "कोच उत्तर तयार करत आहे",
+        "emptyResponse": "कोणतेही उत्तर मिळाले नाही.",
+        "characterCount": "{count}/{max} अक्षरे",
+        "welcomeMessage": "नमस्कार. मी तुमचा AI निवडणूक कोच आहे. पात्रता, मतदार नोंदणी, दस्तऐवज, मतदान दिवस किंवा निवडणूक वेळापत्रकाबद्दल विचारा.",
+        "quickActions": [
+          { "label": "पात्रता तपासा", "prompt": "मी मतदानासाठी पात्र आहे का हे समजण्यास मदत करू शकता का?" },
+          { "label": "आवश्यक दस्तऐवज", "prompt": "मतदान केंद्रावर कोणते दस्तऐवज घेऊन जाऊ शकतो?" },
+          { "label": "माझे बूथ शोधा", "prompt": "माझे नेमलेले मतदान केंद्र कसे शोधू?" }
+        ]
+      }
+    }
+  }
+}
