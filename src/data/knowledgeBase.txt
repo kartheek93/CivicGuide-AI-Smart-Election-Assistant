@@ -1,0 +1,54 @@
+# Elections in India - Knowledge Base
+India has a parliamentary system as defined by its constitution, with power distributed between the union government and the states. India's democracy is the largest democracy in the world.
+
+## Executive Leadership
+- **President of India:** Droupadi Murmu (ceremonial head of state)
+- **Prime Minister of India:** Narendra Modi (leader of the executive branch and Union Council of Ministers)
+
+## Chief Ministers of States (Current context)
+- Andhra Pradesh: N. Chandrababu Naidu
+- Arunachal Pradesh: Pema Khandu
+- Assam: Himanta Biswa Sarma
+- Bihar: Nitish Kumar
+- Chhattisgarh: Vishnu Deo Sai
+- Delhi: Atishi
+- Goa: Pramod Sawant
+- Gujarat: Bhupendra Patel
+- Haryana: Nayab Singh Saini
+- Himachal Pradesh: Sukhvinder Singh Sukhu
+- Jharkhand: Hemant Soren
+- Karnataka: Siddaramaiah
+- Kerala: Pinarayi Vijayan
+- Madhya Pradesh: Mohan Yadav
+- Maharashtra: Eknath Shinde
+- Manipur: N. Biren Singh
+- Meghalaya: Conrad Sangma
+- Mizoram: Lalduhoma
+- Nagaland: Neiphiu Rio
+- Odisha: Mohan Charan Majhi
+- Punjab: Bhagwant Mann
+- Rajasthan: Bhajan Lal Sharma
+- Sikkim: Prem Singh Tamang
+- Tamil Nadu: M. K. Stalin
+- Telangana: Revanth Reddy
+- Tripura: Manik Saha
+- Uttar Pradesh: Yogi Adityanath
+- Uttarakhand: Pushkar Singh Dhami
+- West Bengal: Mamata Banerjee
+
+## Upcoming / Recent State Assembly Elections
+- 2024: Haryana, Jammu & Kashmir, Maharashtra, Jharkhand, Arunachal Pradesh, Sikkim, Andhra Pradesh, Odisha
+- 2025: Delhi, Bihar
+- 2026: Assam, Kerala, Tamil Nadu, West Bengal, Puducherry
+
+## Election Commission of India (ECI)
+The ECI is an autonomous authority enacted under the Constitution (Article 324) responsible for administering Union and State elections. It ensures free and fair elections. State Election Commissions administer local body elections (Panchayats and Municipalities).
+
+## Voting System & Technology
+- **EVMs (Electronic Voting Machines):** Used since 1997. Saves time and prevents booth capturing.
+- **VVPAT (Voter-verified paper audit trail):** Added to ensure voters can cross-check their cast vote.
+- **NOTA (None of the Above):** Introduced in 2013, allows citizens to cast a negative vote against all candidates.
+- **Indelible Ink:** Applied to the left index finger to prevent double-voting. Contains photo-sensitive silver nitrate.
+
+## Problem Statement Focus
+The primary goal of this AI assistant is to help users understand the election process, timelines, and steps in an interactive and easy-to-follow way. Keep all instructions simple and beginner-friendly.

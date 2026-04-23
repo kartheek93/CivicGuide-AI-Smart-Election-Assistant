@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicGuide AI - Indian Election Assistant</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#2563eb', secondary: '#db2777' }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS (minimal, as Tailwind handles most) -->
+    <link rel="stylesheet" href="/components/styles.css">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- Google Analytics (gtag.js) for Usage Metrics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CIVICGUIDE123"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CIVICGUIDE123');
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Login Page Wrapper -->
+    <div id="login-page-wrapper" class="fixed inset-0 bg-slate-100 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md mx-4 transform transition-all text-center">
+            <div class="mb-6">
+                <span class="text-5xl block mb-4">🗳️</span>
+                <h2 class="text-3xl font-bold text-gray-900 tracking-tight">CivicGuide</h2>
+            </div>
+            <h3 class="text-xl text-gray-600 mb-2">Admin Sign In</h3>
+            <p class="text-sm text-gray-500 mb-8">Access the Election Assistant Platform.<br><span class="font-semibold">(Default: admin123)</span></p>
+            
+            <form id="login-form" class="space-y-6 text-left">
+                <div class="relative">
+                    <input type="password" id="password" name="password" value="admin123" 
+                           class="peer w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none focus:border-primary transition-colors bg-transparent text-gray-900" placeholder=" " required>
+                    <label for="password" class="absolute left-4 top-3.5 text-gray-400 cursor-text transition-all bg-white px-1
+                           peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-primary
+                           peer-not-placeholder-shown:-top-2.5 peer-not-placeholder-shown:text-xs">Administrator Password</label>
+                </div>
+                <div id="login-error" class="hidden p-4 rounded-lg bg-red-50 border-l-4 border-red-500 text-red-700 text-sm"></div>
+                <button type="submit" id="login-btn" 
+                        class="w-full bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application Wrapper -->
+    <div id="app-wrapper" class="hidden flex-col min-h-screen">
+        <!-- Modern Header -->
+        <header class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm" id="main-header">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🗳️</span>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900 leading-tight" id="header-title">CivicGuide AI India</h1>
+                        <p class="text-sm text-gray-500" id="header-subtitle">Smart Election Assistant</p>
+                    </div>
+                </div>
+                <!-- Language Selector -->
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-300 hover:bg-gray-50 bg-white shadow-sm">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    <select id="lang-selector" class="bg-transparent text-sm font-medium text-gray-700 outline-none cursor-pointer">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                        <option value="ta">தமிழ் (Tamil)</option>
+                        <option value="mr">मराठी (Marathi)</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+            
+            <!-- Sidebar Navigation -->
+            <aside class="md:col-span-4 lg:col-span-3 space-y-2">
+                <nav class="sticky top-28 bg-white rounded-xl shadow-sm border border-gray-100 p-2" aria-label="Sidebar">
+                    <button class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors font-medium group" data-target="how-to-vote">
+                        <span class="text-xl group-hover:scale-110 transition-transform">📚</span> <span class="t-how-to-vote">How to Vote</span>
+                    </button>
+                    <button class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors font-medium group" data-target="check-eligibility">
+                        <span class="text-xl group-hover:scale-110 transition-transform">✅</span> <span class="t-check-eligibility">Check Eligibility</span>
+                    </button>
+                    <button class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors font-medium group" data-target="election-timeline">
+                        <span class="text-xl group-hover:scale-110 transition-transform">📅</span> <span class="t-timeline">Election Timeline</span>
+                    </button>
+                    <button class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors font-medium group" data-target="ask-ai">
+                        <span class="text-xl group-hover:scale-110 transition-transform">🤖</span> <span class="t-ask-ai">Ask AI Assistant</span>
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Dynamic Content Area -->
+            <div class="md:col-span-8 lg:col-span-9 relative" id="content-area">
+                
+                <!-- Welcome Section -->
+                <section id="welcome-section" class="app-section bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
+                    <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-4xl">👋</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 t-welcome">Welcome to CivicGuide</h2>
+                    <p class="text-gray-600 max-w-lg mx-auto t-welcome-desc">Select an option from the menu to learn about the election process, check your eligibility, or ask our intelligent assistant a question.</p>
+                </section>
+
+                <!-- How to Vote -->
+                <section id="how-to-vote" class="app-section hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-4 t-how-to-vote">How to Vote</h2>
+                    <div id="steps-container" class="space-y-4"></div>
+                </section>
+
+                <!-- Check Eligibility -->
+                <section id="check-eligibility" class="app-section hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-4 t-check-eligibility">Check Eligibility</h2>
+                    <form id="eligibility-form" class="space-y-6 max-w-md">
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-2 t-age">Age</label>
+                            <input type="number" id="age" name="age" required min="1" max="130" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-shadow">
+                        </div>
+                        <div>
+                            <label for="citizenship" class="block text-sm font-medium text-gray-700 mb-2 t-citizenship">Citizenship Status</label>
+                            <select id="citizenship" name="citizenship" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white">
+                                <option value="" class="t-select">Select...</option>
+                                <option value="indian-citizen" class="t-citizen">Indian Citizen</option>
+                                <option value="non-citizen" class="t-non-citizen">Non-Citizen / NRI (No Voting Rights)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="registration" class="block text-sm font-medium text-gray-700 mb-2 t-registration">Registration Status</label>
+                            <select id="registration" name="registration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white">
+                                <option value="" class="t-select">Select...</option>
+                                <option value="registered" class="t-registered">Registered</option>
+                                <option value="not-registered" class="t-not-registered">Not Registered</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg shadow transition-colors t-check-btn">Check</button>
+                    </form>
+                    <div id="eligibility-result" class="hidden mt-6 p-4 rounded-lg shadow-sm border-l-4"></div>
+                </section>
+
+                <!-- Election Timeline -->
+                <section id="election-timeline" class="app-section hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-4 t-timeline">Election Timeline</h2>
+                    <ul class="space-y-6 relative border-l-2 border-blue-100 ml-4">
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-blue-100 border-4 border-white shadow"></span>
+                            <h3 class="font-bold text-gray-900 t-months-before">Months Before</h3>
+                            <p class="text-gray-600 mt-1 t-months-desc">Election Commission of India (ECI) announces dates and Model Code of Conduct comes into effect.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-blue-100 border-4 border-white shadow"></span>
+                            <h3 class="font-bold text-gray-900 t-weeks-before">Weeks Before</h3>
+                            <p class="text-gray-600 mt-1 t-weeks-desc">Campaigning by political parties. Voter slips distributed.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-blue-100 border-4 border-white shadow"></span>
+                            <h3 class="font-bold text-gray-900 t-48h-before">48 Hours Before</h3>
+                            <p class="text-gray-600 mt-1 t-48h-desc">Campaigning ends. Silence period begins.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-blue-100 border-4 border-white shadow"></span>
+                            <h3 class="font-bold text-gray-900 t-polling-day">Polling Day</h3>
+                            <p class="text-gray-600 mt-1 t-polling-desc">Voters cast their ballot using EVM and VVPAT.</p>
+                        </li>
+                        <li class="pl-6 relative">
+                            <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-blue-100 border-4 border-white shadow"></span>
+                            <h3 class="font-bold text-gray-900 t-counting-day">Counting Day</h3>
+                            <p class="text-gray-600 mt-1 t-counting-desc">ECI counts votes and declares results.</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Ask AI -->
+                <section id="ask-ai" class="app-section hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col h-full min-h-[500px]">
+                    <div class="mb-6 border-b border-gray-100 pb-4">
+                        <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2 t-ask-ai">
+                            Ask AI Assistant
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Gemini 2.5 Flash</span>
+                        </h2>
+                        <p class="text-gray-500 mt-1 t-ask-desc">Ask me any neutral, factual question about the election process!</p>
+                    </div>
+
+                    <!-- Chat Output Area -->
+                    <div id="chat-history" class="flex-grow overflow-y-auto mb-6 space-y-4 pr-2">
+                        <!-- AI messages will appear here -->
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="ai-loading" class="hidden mb-4">
+                        <div class="flex items-center gap-3 text-primary">
+                            <div class="flex space-x-1">
+                                <div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+                            </div>
+                            <span class="text-sm font-medium t-thinking">AI is thinking...</span>
+                        </div>
+                    </div>
+
+                    <form id="ai-form" class="mt-auto relative">
+                        <label for="question" class="sr-only">Your Question</label>
+                        <textarea id="question" name="question" rows="2" class="w-full px-4 py-3 pr-16 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none shadow-sm" placeholder="e.g., What is NOTA?" required maxlength="500"></textarea>
+                        <button type="submit" id="ask-btn" class="absolute right-2 bottom-2 bg-primary hover:bg-blue-700 text-white p-2 rounded-lg transition-colors shadow flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        </button>
+                    </form>
+                </section>
+                
+            </div>
+        </main>
+
+        <footer class="mt-auto border-t border-gray-200 bg-white py-6">
+            <div class="max-w-5xl mx-auto px-4 text-center text-gray-500 text-sm">
+                <p>&copy; 2026 CivicGuide AI. Neutral & factual information only.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Custom styles loaded via styles.css -->
+    <script type="module" src="/components/app.js"></script>
+</body>
+</html>
