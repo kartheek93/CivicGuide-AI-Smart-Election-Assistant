@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -67,6 +68,17 @@ app.post('/api/ask', async (req, res) => {
     } catch (error) {
         console.error('Error handling /api/ask:', error);
         res.status(500).json({ error: 'Failed to process your request.' });
+    }
+});
+
+// Route to get Knowledge Base data for the UI
+app.get('/api/knowledge', async (req, res) => {
+    try {
+        const kbPath = path.join(__dirname, 'src', 'data', 'knowledgeBase.txt');
+        const content = fs.readFileSync(kbPath, 'utf8');
+        res.json({ content });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to load knowledge base.' });
     }
 });
 

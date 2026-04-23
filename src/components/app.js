@@ -8,6 +8,7 @@ const dict = {
         "t-check-eligibility": "Check Eligibility",
         "t-timeline": "Election Timeline",
         "t-ask-ai": "Ask AI Assistant",
+        "t-knowledge-hub": "Knowledge Hub",
         "t-welcome": "Welcome to CivicGuide",
         "t-welcome-desc": "Select an option from the menu to learn about the election process, check your eligibility, or ask our intelligent assistant a question.",
         "t-age": "Age",
@@ -38,6 +39,7 @@ const dict = {
         "t-check-eligibility": "पात्रता जांचें",
         "t-timeline": "चुनाव की समयसीमा",
         "t-ask-ai": "AI सहायक से पूछें",
+        "t-knowledge-hub": "ज्ञान केंद्र",
         "t-welcome": "CivicGuide में आपका स्वागत है",
         "t-welcome-desc": "चुनाव प्रक्रिया के बारे में जानने, अपनी पात्रता जांचने, या हमारे बुद्धिमान सहायक से प्रश्न पूछने के लिए मेनू से एक विकल्प चुनें।",
         "t-age": "आयु",
@@ -68,6 +70,7 @@ const dict = {
         "t-check-eligibility": "అర్హతను తనిఖీ చేయండి",
         "t-timeline": "ఎన్నికల కాలక్రమం",
         "t-ask-ai": "AI సహాయకుడిని అడగండి",
+        "t-knowledge-hub": "జ్ఞాన కేంద్రం",
         "t-welcome": "CivicGuide కి స్వాగతం",
         "t-welcome-desc": "ఎన్నికల ప్రక్రియ గురించి తెలుసుకోవడానికి, మీ అర్హతను తనిఖీ చేయడానికి లేదా మా తెలివైన సహాయకుడిని ప్రశ్న అడగడానికి మెను నుండి ఒక ఎంపికను ఎంచుకోండి.",
         "t-age": "వయస్సు",
@@ -98,6 +101,7 @@ const dict = {
         "t-check-eligibility": "தகுதியைச் சரிபார்க்கவும்",
         "t-timeline": "தேர்தல் காலக்கோடு",
         "t-ask-ai": "AI உதவியாளரிடம் கேட்கவும்",
+        "t-knowledge-hub": "அறிவு மையம்",
         "t-welcome": "CivicGuide-க்கு வரவேற்கிறோம்",
         "t-welcome-desc": "தேர்தல் செயல்முறையைப் பற்றி அறிய, உங்கள் தகுதியைச் சரிபார்க்க அல்லது எங்களது அறிவுசார் உதவியாளரிடம் கேள்வி கேட்க மெனுவிலிருந்து ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்.",
         "t-age": "வயது",
@@ -128,6 +132,7 @@ const dict = {
         "t-check-eligibility": "पात्रता तपासा",
         "t-timeline": "निवडणूक वेळापत्रक",
         "t-ask-ai": "AI सहायकाला विचारा",
+        "t-knowledge-hub": "ज्ञान केंद्र",
         "t-welcome": "CivicGuide मध्ये आपले स्वागत आहे",
         "t-welcome-desc": "निवडणूक प्रक्रियेबद्दल जाणून घेण्यासाठी, तुमची पात्रता तपासण्यासाठी किंवा आमच्या बुद्धिमान सहायकाला प्रश्न विचारण्यासाठी मेनूमधून एक पर्याय निवडा.",
         "t-age": "वय",
@@ -199,6 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showSection(target);
             if (target === 'how-to-vote') {
                 renderHowToVote();
+            } else if (target === 'knowledge-hub') {
+                renderKnowledgeHub();
             }
         });
     });
@@ -298,6 +305,47 @@ document.addEventListener('DOMContentLoaded', () => {
             { opacity: 0, y: 10 }, 
             { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
         );
+    };
+
+    // ---- KNOWLEDGE HUB RENDERING ----
+    const renderKnowledgeHub = async () => {
+        const container = document.getElementById('knowledge-container');
+        if (container.innerHTML.indexOf('animate-pulse') === -1 && container.innerHTML !== '') return;
+
+        try {
+            const response = await fetch('/api/knowledge');
+            const data = await response.json();
+            
+            // Basic parsing of KnowledgeBase.txt
+            const sections = data.content.split('##').filter(s => s.trim() !== '');
+            let html = '';
+
+            sections.forEach(sec => {
+                const lines = sec.trim().split('\n');
+                const title = lines[0].trim();
+                const content = lines.slice(1).join('<br>').replace(/- /g, '• ');
+
+                html += `
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-primary/30 transition-all shadow-sm group">
+                    <h3 class="text-lg font-bold text-primary mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-primary rounded-full"></span>
+                        ${title}
+                    </h3>
+                    <div class="text-gray-600 text-sm leading-relaxed">
+                        ${content}
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html;
+            gsap.fromTo('#knowledge-container > div', 
+                { opacity: 0, scale: 0.95 }, 
+                { opacity: 1, scale: 1, duration: 0.4, stagger: 0.1, ease: "back.out(1.2)" }
+            );
+
+        } catch (error) {
+            container.innerHTML = `<p class="text-red-500">Failed to load knowledge base content.</p>`;
+        }
     };
 
     // ---- ELIGIBILITY CHECKER ----

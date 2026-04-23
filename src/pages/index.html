@@ -102,6 +102,9 @@
                     <button class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors font-medium group" data-target="ask-ai">
                         <span class="text-xl group-hover:scale-110 transition-transform">🤖</span> <span class="t-ask-ai">Ask AI Assistant</span>
                     </button>
+                    <button class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors font-medium group" data-target="knowledge-hub">
+                        <span class="text-xl group-hover:scale-110 transition-transform">📜</span> <span class="t-knowledge-hub">Knowledge Hub</span>
+                    </button>
                 </nav>
             </aside>
 
@@ -182,6 +185,19 @@
                             <p class="text-gray-600 mt-1 t-counting-desc">ECI counts votes and declares results.</p>
                         </li>
                     </ul>
+                </section>
+
+                <!-- Knowledge Hub Section -->
+                <section id="knowledge-hub" class="app-section hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-8 space-y-8">
+                    <div class="flex items-center gap-3 mb-2 border-b border-gray-100 pb-4">
+                        <span class="text-3xl">📜</span>
+                        <h2 class="text-2xl font-bold text-gray-900 t-knowledge-hub">Knowledge Hub</h2>
+                    </div>
+                    <div id="knowledge-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Content will be dynamically loaded from knowledgeBase.txt -->
+                        <div class="p-6 bg-blue-50 rounded-xl animate-pulse h-32"></div>
+                        <div class="p-6 bg-blue-50 rounded-xl animate-pulse h-32"></div>
+                    </div>
                 </section>
 
                 <!-- Ask AI -->
