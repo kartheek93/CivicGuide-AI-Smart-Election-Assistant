@@ -1,4 +1,4 @@
-/* --- PREMIUM DESIGN SYSTEM --- */
+/* --- BOLD INDIAN DESIGN SYSTEM --- */
 :root {
     --primary: #2563eb;
     --primary-dark: #1e40af;
@@ -6,90 +6,83 @@
     --white: #FFFFFF;
     --green: #138808;
     --navy: #000080;
-    --glass: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.4);
 }
 
-/* --- BACKGROUND WATERMARK --- */
+/* --- BOLD TRICOLOR TOP BORDER --- */
 body {
     position: relative;
-    background: #f8fafc; /* Slate 50 */
+    background: #fdfdfd;
     min-height: 100vh;
+    border-top: 10px solid var(--saffron);
 }
 
+/* --- HIGH-VISIBILITY WATERMARK (4 LIONS) --- */
 body::before {
     content: "";
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    height: 60%;
+    width: 70%;
+    height: 70%;
     background: url('/assets/watermark.png') no-repeat center center;
     background-size: contain;
-    opacity: 0.05; /* Extremely subtle */
+    opacity: 0.15; /* Increased visibility for the 4 Lions */
     pointer-events: none;
     z-index: -1;
 }
 
-/* --- GLASSMORPHISM --- */
+/* --- FLOATING FLAG --- */
+.floating-flag {
+    animation: wave 4s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(2deg) translateY(-5px); }
+}
+
+/* --- TRICOLOR GRADIENTS --- */
+.header-tricolor {
+    background: linear-gradient(90deg, rgba(255,153,51,0.05) 0%, rgba(255,255,255,1) 50%, rgba(19,136,8,0.05) 100%);
+}
+
+.text-saffron { color: var(--saffron); }
+.text-green { color: var(--green); }
+.bg-saffron { background-color: var(--saffron); }
+.bg-green { background-color: var(--green); }
+
+/* --- PREMIUM GLASSMORPHISM --- */
 .glass-panel {
     background: var(--glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .glass-card:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+    transform: scale(1.02) translateY(-8px);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 20px 50px -15px rgba(0,0,0,0.15);
 }
 
-/* --- TRICOLOR ACCENTS --- */
-.border-tricolor {
-    border-top: 4px solid var(--saffron);
-    border-bottom: 4px solid var(--green);
+/* --- CUSTOM UTILITIES --- */
+.tricolor-border-bottom {
+    border-bottom: 5px solid;
+    border-image: linear-gradient(90deg, var(--saffron), var(--white), var(--green)) 1;
 }
 
-.text-tricolor {
-    background: linear-gradient(90deg, var(--saffron) 0%, var(--navy) 50%, var(--green) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* --- CUSTOM SCROLLBAR --- */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
-
-/* --- ANIMATION HELPERS --- */
-.reveal-up {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-/* --- RESPONSIVE OVERRIDES --- */
-@media (max-width: 640px) {
-    body::before {
-        width: 90%;
-    }
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 5px; }
