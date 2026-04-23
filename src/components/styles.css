@@ -1,49 +1,95 @@
-/* Custom overrides for AI chat markdown and scrollbars */
-/* Tailwind handles the rest of the UI */
-
-#chat-history h3 { 
-    font-size: 1.125rem; 
-    font-weight: 700; 
-    margin-top: 1rem; 
-    margin-bottom: 0.5rem; 
-    color: #111827; 
+/* --- PREMIUM DESIGN SYSTEM --- */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --saffron: #FF9933;
+    --white: #FFFFFF;
+    --green: #138808;
+    --navy: #000080;
+    --glass: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.2);
 }
 
-#chat-history h4 { 
-    font-size: 1rem; 
-    font-weight: 600; 
-    margin-top: 0.75rem; 
-    margin-bottom: 0.5rem; 
-    color: #374151; 
+/* --- BACKGROUND WATERMARK --- */
+body {
+    position: relative;
+    background: #f8fafc; /* Slate 50 */
+    min-height: 100vh;
 }
 
-#chat-history ul { 
-    list-style-type: disc; 
-    margin-left: 1.5rem; 
-    margin-top: 0.5rem; 
-    margin-bottom: 1rem; 
+body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: url('/assets/watermark.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.05; /* Extremely subtle */
+    pointer-events: none;
+    z-index: -1;
 }
 
-#chat-history li { 
-    margin-bottom: 0.25rem; 
+/* --- GLASSMORPHISM --- */
+.glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
-#chat-history strong { 
-    font-weight: 600; 
-    color: #111827; 
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Custom Scrollbar for chat area */
-::-webkit-scrollbar { 
-    width: 6px; 
+.glass-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
 }
-::-webkit-scrollbar-track { 
-    background: transparent; 
+
+/* --- TRICOLOR ACCENTS --- */
+.border-tricolor {
+    border-top: 4px solid var(--saffron);
+    border-bottom: 4px solid var(--green);
 }
-::-webkit-scrollbar-thumb { 
-    background: #cbd5e1; 
-    border-radius: 10px; 
+
+.text-tricolor {
+    background: linear-gradient(90deg, var(--saffron) 0%, var(--navy) 50%, var(--green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-::-webkit-scrollbar-thumb:hover { 
-    background: #94a3b8; 
+
+/* --- CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* --- ANIMATION HELPERS --- */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* --- RESPONSIVE OVERRIDES --- */
+@media (max-width: 640px) {
+    body::before {
+        width: 90%;
+    }
 }

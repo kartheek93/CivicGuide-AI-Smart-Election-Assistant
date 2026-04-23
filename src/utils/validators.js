@@ -14,7 +14,21 @@ export const isValidAge = (age) => {
  * @returns {boolean}
  */
 export const isValidQuestion = (question) => {
-    if (typeof question !== 'string') return false;
-    const trimmed = question.trim();
-    return trimmed.length > 0 && trimmed.length <= 500;
+    return question && typeof question === 'string' && question.trim().length > 0 && question.length <= 500;
+};
+
+/**
+ * Basic sanitization to prevent simple XSS/Injection
+ * @param {string} input 
+ * @returns {string}
+ */
+export const sanitizeInput = (input) => {
+    if (!input) return "";
+    return input
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .trim();
 };
