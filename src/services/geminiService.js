@@ -1,106 +1,165 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { normalizeLanguageCode, normalizeLanguageName } from '../config/languages.js';
+import { TTLCache } from './cacheService.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const buildContextBlock = (userContext) => {
+    if (!userContext?.hasCheckedEligibility) {
+        return 'USER CONTEXT: The user has not completed the eligibility checker yet.';
+    }
 
-let knowledgeBaseContext = "";
-try {
-    const kbPath = path.join(__dirname, '..', 'data', 'knowledgeBase.txt');
-    knowledgeBaseContext = fs.readFileSync(kbPath, 'utf8');
-} catch (err) {
-    console.warn("Knowledge base file not found or couldn't be read.");
-}
+    const reasons = Array.isArray(userContext.reasons) && userContext.reasons.length
+        ? userContext.reasons.join(' ')
+        : 'No additional guidance provided.';
 
-class GeminiService {
-    constructor() {
+    return [
+        'USER CONTEXT:',
+        `- Age: ${userContext.age ?? 'Not provided'}`,
+        `- Citizenship: ${userContext.citizenship ?? 'Not provided'}`,
+        `- Registration status: ${userContext.registration ?? 'Not provided'}`,
+        `- Eligibility result: ${userContext.isEligible ? 'Eligible' : 'Needs action'}`,
+        `- Notes: ${reasons}`
+    ].join('\n');
+};
+
+const buildPrompt = ({ question, responseLanguage, userContext, knowledgeContext }) => `
+SYSTEM ROLE:
+You are CivicGuide AI, a neutral election guidance assistant for citizens in India.
+
+INSTRUCTIONS:
+1. Stay politically neutral and non-partisan.
+2. Answer in ${responseLanguage}.
+3. Keep the response under 150 words.
+4. Use short bullet points or concise paragraphs.
+5. Do not invent live election dates, candidate lists, constituency details, or official statuses.
+6. If a question depends on current or local information, direct the user to verify on official Election Commission of India portals.
+7. If the user appears ineligible, explain the next practical step.
+
+${buildContextBlock(userContext)}
+
+RELEVANT KNOWLEDGE:
+${knowledgeContext}
+
+USER QUESTION:
+${question}
+`;
+
+export class GeminiService {
+    constructor({
+        apiKey = null,
+        modelName = 'gemini-2.5-flash',
+        knowledgeBaseService,
+        googleCloudService
+    } = {}) {
+        this.apiKey = apiKey;
+        this.modelName = modelName;
+        this.knowledgeBaseService = knowledgeBaseService;
+        this.googleCloudService = googleCloudService;
         this.genAI = null;
         this.model = null;
         this.initialized = false;
+        this.responseCache = new TTLCache({
+            ttlMs: 10 * 60 * 1000,
+            maxEntries: 200
+        });
     }
 
-    init() {
-        try {
-            if (!process.env.GEMINI_API_KEY) {
-                throw new Error("GEMINI_API_KEY is not set in environment variables.");
-            }
+    getStatus() {
+        return {
+            configured: Boolean(this.apiKey),
+            initialized: this.initialized,
+            model: this.modelName,
+            cache: this.responseCache.stats()
+        };
+    }
 
-            console.log("✅ Initializing Gemini...");
-
-            this.genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-            this.model = this.genAI.getGenerativeModel({
-                model: "gemini-2.5-flash", 
-            });
-
-            this.initialized = true;
-            console.log("✅ Gemini initialized successfully");
-        } catch (error) {
-            console.error("❌ Gemini Initialization Failed:", error.message);
-            this.initialized = false;
+    async ensureInitialized() {
+        if (this.initialized && this.model) {
+            return true;
         }
+
+        if (!this.apiKey) {
+            return false;
+        }
+
+        this.genAI = new GoogleGenerativeAI(this.apiKey);
+        this.model = this.genAI.getGenerativeModel({
+            model: this.modelName
+        });
+        this.initialized = true;
+        return true;
     }
 
-    /**
-     * @param {string} question 
-     * @param {string} language - The current UI language
-     * @param {object} userContext - Context from the eligibility checker
-     */
-    async askQuestion(question, language = "English", userContext = null) {
+    async askQuestion(question, language = 'English', userContext = null) {
+        const normalizedLanguage = normalizeLanguageName(language);
+        const cacheKey = JSON.stringify({
+            question: question.toLowerCase(),
+            language: normalizedLanguage,
+            context: userContext
+        });
+
+        const cachedAnswer = this.responseCache.get(cacheKey);
+        if (cachedAnswer) {
+            return cachedAnswer;
+        }
+
+        const targetLanguageCode = normalizeLanguageCode(normalizedLanguage);
+        const shouldTranslate = targetLanguageCode !== 'en' && this.googleCloudService?.canTranslate?.();
+        const knowledgeContext = await this.knowledgeBaseService.getRelevantContext(question, { limit: 4 });
+
+        let answer = await this.generateAnswer({
+            question,
+            responseLanguage: shouldTranslate ? 'English' : normalizedLanguage,
+            userContext,
+            knowledgeContext
+        });
+
+        if (shouldTranslate) {
+            let translatedAnswer = null;
+
+            try {
+                translatedAnswer = await this.googleCloudService.translateText(answer, targetLanguageCode, 'en');
+            } catch (error) {
+                console.warn('Translation fallback failed:', error.message);
+            }
+
+            if (translatedAnswer) {
+                answer = translatedAnswer;
+            } else {
+                answer = await this.generateAnswer({
+                    question,
+                    responseLanguage: normalizedLanguage,
+                    userContext,
+                    knowledgeContext
+                });
+            }
+        }
+
+        this.responseCache.set(cacheKey, answer);
+        return answer;
+    }
+
+    async generateAnswer({ question, responseLanguage, userContext, knowledgeContext }) {
         try {
-            if (!this.initialized || !this.model) {
-                this.init();
+            const isReady = await this.ensureInitialized();
+            if (!isReady) {
+                return 'AI service is currently unavailable. Please check server configuration.';
             }
 
-            if (!this.model) {
-                return "AI service is currently unavailable. Please check server configuration.";
-            }
-
-            // Building the personalized context string
-            let contextInstruction = "";
-            if (userContext && userContext.hasCheckedEligibility) {
-                contextInstruction = `
-USER CONTEXT:
-- Age: ${userContext.age}
-- Eligibility Status: ${userContext.isEligible ? 'Eligible' : 'Not Eligible'}
-- Specific Feedback given: ${userContext.reason}
-`;
-            }
-
-            const prompt = `
-SYSTEM ROLE (Vertical: AI Election Coach):
-You are the "CivicGuide AI Election Coach". Your mission is to provide personalized, intelligent, and logical guidance to voters in India.
-
-RULES:
-1. Stay politically neutral.
-2. Use bullet points and a friendly coaching tone.
-3. Keep answers under 150 words.
-4. Respond in ${language}.
-
-LOGICAL DECISION MAKING:
-Use the provided USER CONTEXT to tailor your advice. If the user is ineligible (e.g., underage), logically explain what they can do (e.g., register later).
-
-${contextInstruction}
-
-KNOWLEDGE BASE:
-${knowledgeBaseContext}
-
-USER QUESTION: ${question}
-`;
+            const prompt = buildPrompt({
+                question,
+                responseLanguage,
+                userContext,
+                knowledgeContext
+            });
 
             const result = await this.model.generateContent({
-                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                contents: [{ role: 'user', parts: [{ text: prompt }] }]
             });
 
-            return result.response.text() || "No response generated.";
-
+            return result.response.text()?.trim() || 'No response generated.';
         } catch (error) {
-            console.error("❌ Gemini API Error:", error.message);
-            return "AI service error. Please try again later.";
+            console.error('Gemini API error:', error.message);
+            return 'AI service error. Please try again later.';
         }
     }
 }
-
-export default new GeminiService();

@@ -1,5 +1,13 @@
 runtime: nodejs20
 instance_class: F1
+automatic_scaling:
+  max_instances: 2
 env_variables:
   NODE_ENV: "production"
-  # Set GEMINI_API_KEY and ADMIN_PASSWORD in the GCP Console under App Engine > Versions > Configuration
+  AUTH_REQUIRED: "false"
+  GOOGLE_CLOUD_PROJECT_ID: "crowdflow-ai-493114"
+  GOOGLE_USE_METADATA_SERVER: "true"
+  GOOGLE_TRANSLATE_ENABLED: "true"
+  GOOGLE_TTS_ENABLED: "true"
+  GEMINI_API_KEY_SECRET: "gemini-api-key"
+  # Set AUTH_REQUIRED to "true" and provide ADMIN_PASSWORD or ADMIN_PASSWORD_SECRET when login is needed.

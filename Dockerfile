@@ -1,8 +1,11 @@
 FROM node:20-slim
 WORKDIR /app
+ENV NODE_ENV=production
 COPY package*.json ./
-RUN npm install --production
+RUN npm ci --omit=dev
 COPY . .
+RUN chown -R node:node /app
+USER node
 EXPOSE 8080
 ENV PORT=8080
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

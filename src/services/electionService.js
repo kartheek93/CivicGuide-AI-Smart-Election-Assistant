@@ -2,10 +2,11 @@
 // No API calls, ensuring efficiency
 
 export const checkEligibility = (age, citizenshipStatus, registrationStatus) => {
-    let messages = [];
+    const parsedAge = Number(age);
+    const messages = [];
     let isEligible = true;
 
-    if (age < 18) {
+    if (!Number.isFinite(parsedAge) || parsedAge < 18) {
         isEligible = false;
         messages.push("You must be at least 18 years old on or before the qualifying date to vote in India.");
     }
