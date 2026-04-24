@@ -37,6 +37,8 @@ export const loadRuntimeConfig = () => {
                 || readValue(process.env.GOOGLE_PROJECT_ID)
                 || readValue(process.env.GOOGLE_CLOUD_PROJECT),
             location: readValue(process.env.GOOGLE_CLOUD_LOCATION) || 'global',
+            bigQueryDataset: readValue(process.env.GOOGLE_BIGQUERY_DATASET),
+            bigQueryTable: readValue(process.env.GOOGLE_BIGQUERY_TABLE),
             serviceAccountJson: readValue(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
                 || readValue(process.env.GOOGLE_SERVICE_ACCOUNT_JSON),
             geminiApiKeySecret: readValue(process.env.GEMINI_API_KEY_SECRET),

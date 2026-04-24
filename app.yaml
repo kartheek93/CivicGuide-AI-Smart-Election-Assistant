@@ -5,9 +5,10 @@ automatic_scaling:
 env_variables:
   NODE_ENV: "production"
   AUTH_REQUIRED: "false"
-  GOOGLE_CLOUD_PROJECT_ID: "crowdflow-ai-493114"
+  GOOGLE_CLOUD_PROJECT_ID: "civicguide-ai-494206"
   GOOGLE_USE_METADATA_SERVER: "true"
   GOOGLE_TRANSLATE_ENABLED: "true"
   GOOGLE_TTS_ENABLED: "true"
   GEMINI_API_KEY_SECRET: "gemini-api-key"
+  # Optional: set GOOGLE_BIGQUERY_DATASET and GOOGLE_BIGQUERY_TABLE to enable BigQuery analytics logging.
   # Set AUTH_REQUIRED to "true" and provide ADMIN_PASSWORD or ADMIN_PASSWORD_SECRET when login is needed.

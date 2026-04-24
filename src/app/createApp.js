@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import rateLimit from 'express-rate-limit';
 import { loadRuntimeConfig } from '../config/runtime.js';
 import { getSpeechLanguageCode, normalizeLanguageName } from '../config/languages.js';
+import { AnalyticsService } from '../services/analyticsService.js';
 import { AuthService } from '../services/authService.js';
 import { GeminiService } from '../services/geminiService.js';
 import { GoogleCloudService } from '../services/googleCloudService.js';
@@ -26,6 +27,14 @@ const cloneRuntimeConfig = (config) => JSON.parse(JSON.stringify(config));
 
 const sendNoStore = (res) => {
     res.setHeader('Cache-Control', 'no-store, max-age=0');
+};
+
+const createAnalyticsRecorder = (analyticsService) => {
+    return (eventType, payload = {}) => {
+        analyticsService.recordEvent(eventType, payload).catch((error) => {
+            console.warn(`Analytics event failed for ${eventType}:`, error.message);
+        });
+    };
 };
 
 const normalizeContext = (context) => {
@@ -102,6 +111,14 @@ export const createApp = async ({
 
     const authService = serviceOverrides.authService
         || new AuthService(config.auth);
+    const analyticsService = serviceOverrides.analyticsService
+        || new AnalyticsService({
+            googleCloudService,
+            projectId: config.googleCloud.projectId,
+            datasetId: config.googleCloud.bigQueryDataset,
+            tableId: config.googleCloud.bigQueryTable
+        });
+    const recordAnalytics = createAnalyticsRecorder(analyticsService);
 
     const geminiService = serviceOverrides.geminiService
         || new GeminiService({
@@ -180,6 +197,7 @@ export const createApp = async ({
     }));
 
     app.get('/api/health', (req, res) => {
+        sendNoStore(res);
         res.json({
             status: 'ok',
             timestamp: new Date().toISOString(),
@@ -189,6 +207,7 @@ export const createApp = async ({
                 authConfigured: authService.isConfigured(),
                 gemini: geminiService.getStatus(),
                 googleCloud: googleCloudService.getStatus(),
+                analytics: analyticsService.getStatus(),
                 knowledgeBase: knowledgeBaseService.getStats()
             }
         });
@@ -207,6 +226,9 @@ export const createApp = async ({
         sendNoStore(res);
 
         if (!authService.isAuthRequired()) {
+            recordAnalytics('login.bypassed', {
+                authRequired: false
+            });
             return res.json({
                 success: true,
                 authRequired: false,
@@ -222,9 +244,15 @@ export const createApp = async ({
 
         const password = typeof req.body?.password === 'string' ? req.body.password : '';
         if (!authService.verifyPassword(password)) {
+            recordAnalytics('login.failed', {
+                authRequired: true
+            });
             return res.status(401).json({ error: 'Invalid password' });
         }
 
+        recordAnalytics('login.succeeded', {
+            authRequired: true
+        });
         return res.json({
             success: true,
             token: authService.createToken()
@@ -233,6 +261,7 @@ export const createApp = async ({
 
     app.post('/api/ask', askLimiter, async (req, res, next) => {
         sendNoStore(res);
+        const startedAt = Date.now();
 
         if (!authService.isValidAuthHeader(req.headers.authorization)) {
             return res.status(403).json({ error: 'Unauthorized access. Please login.' });
@@ -245,14 +274,25 @@ export const createApp = async ({
 
         try {
             const answer = await geminiService.askQuestion(payload.question, payload.language, payload.context);
+            recordAnalytics('ai.ask.completed', {
+                language: payload.language,
+                hasEligibilityContext: Boolean(payload.context?.hasCheckedEligibility),
+                answerLength: answer.length,
+                durationMs: Date.now() - startedAt
+            });
             return res.json({ answer });
         } catch (error) {
+            recordAnalytics('ai.ask.failed', {
+                language: payload.language,
+                durationMs: Date.now() - startedAt
+            });
             return next(error);
         }
     });
 
     app.post('/api/speak', askLimiter, async (req, res, next) => {
         sendNoStore(res);
+        const startedAt = Date.now();
 
         if (!authService.isValidAuthHeader(req.headers.authorization)) {
             return res.status(403).json({ error: 'Unauthorized access. Please login.' });
@@ -271,9 +311,18 @@ export const createApp = async ({
                 });
             }
 
+            recordAnalytics('ai.speak.completed', {
+                language: payload.language,
+                textLength: payload.text.length,
+                durationMs: Date.now() - startedAt
+            });
             return res.json(audio);
         } catch (error) {
             console.warn('Text-to-speech request failed:', error.message);
+            recordAnalytics('ai.speak.failed', {
+                language: payload.language,
+                durationMs: Date.now() - startedAt
+            });
             return res.status(503).json({
                 error: 'Text-to-speech is temporarily unavailable. Please try again later.'
             });

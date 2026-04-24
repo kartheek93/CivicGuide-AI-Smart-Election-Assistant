@@ -73,7 +73,8 @@
       "loginInvalid": "Invalid password. Please check your credential and try again.",
       "network": "Server connection failed. Please try again.",
       "invalidQuestion": "Please enter a question between 1 and 500 characters.",
-      "coachOffline": "The AI Coach is temporarily unavailable. Please try again shortly."
+      "coachOffline": "The AI Coach is temporarily unavailable. Please try again shortly.",
+      "speechUnavailable": "Audio playback is temporarily unavailable. Please try again shortly."
     },
     "sections": {
       "welcome": {
@@ -231,6 +232,9 @@
         "inputLabel": "Ask the AI Coach",
         "placeholder": "Ask about voting, eligibility, documents, or timelines...",
         "send": "Send message",
+        "listen": "Listen",
+        "stopAudio": "Stop audio",
+        "audioLoading": "Preparing audio",
         "typing": "Coach is preparing an answer",
         "emptyResponse": "No response was returned.",
         "characterCount": "{count}/{max} characters",

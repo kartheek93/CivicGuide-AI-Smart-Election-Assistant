@@ -16,7 +16,7 @@ CivicGuide AI solves this by combining static rule-based election guidance with 
 
 ## How The Application Works
 
-1. The user opens the web app and logs in through the admin portal.
+1. The user opens the web app and either signs in through the admin portal or enters directly in public-access mode.
 2. The dashboard loads with a responsive government-style interface.
 3. The user can switch languages from the top navigation.
 4. The sidebar lets the user access Home, How to Vote, Eligibility, Timeline, Knowledge Hub, and AI Coach.
@@ -24,8 +24,9 @@ CivicGuide AI solves this by combining static rule-based election guidance with 
 6. The AI Coach receives the user's question, selected language, and eligibility context.
 7. The backend retrieves only the most relevant knowledge base sections for that question instead of sending the full file every time.
 8. Gemini 2.5 Flash generates a short, neutral election guidance response, and Google Cloud Translation can localize that answer when enabled.
-9. Google Cloud Text-to-Speech can optionally synthesize spoken guidance for accessibility-friendly audio output.
-10. Static guidance such as voting steps, timeline, and civic facts is rendered quickly from local frontend data and translation files.
+9. Google Cloud Text-to-Speech can optionally synthesize spoken guidance for accessibility-friendly audio output, and the AI chat can play assistant responses aloud.
+10. Optional BigQuery analytics logging can capture high-level application events such as AI usage and speech synthesis activity.
+11. Static guidance such as voting steps, timeline, and civic facts is rendered quickly from local frontend data and translation files.
 
 ## Key Features
 
@@ -38,15 +39,16 @@ CivicGuide AI solves this by combining static rule-based election guidance with 
 - AI Election Coach powered by Gemini 2.5 Flash.
 - Relevant-context retrieval for smaller and faster AI prompts.
 - Knowledge Hub for civic and election explainers.
-- Modern chat interface with user/assistant bubbles, typing state, and quick prompts.
+- Modern chat interface with user/assistant bubbles, typing state, quick prompts, and optional audio playback for assistant replies.
 - Accessibility-focused UI with semantic HTML, ARIA labels, keyboard focus states, and reduced-motion support.
 - Security middleware with Helmet and rate limiting.
 - Health/status endpoint for deployment checks and service visibility.
 - Optional Google Cloud Secret Manager loading for `GEMINI_API_KEY` and `ADMIN_PASSWORD`.
 - Optional Google Cloud Translation for multilingual AI answer delivery.
 - Optional Google Cloud Text-to-Speech for spoken election guidance.
+- Optional Google BigQuery analytics logging for non-sensitive application events.
 - GZIP compression for better performance.
-- Automated tests for election logic, validators, auth, knowledge retrieval, API routes, and burst handling.
+- Automated tests for election logic, validators, auth, analytics, knowledge retrieval, API routes, and burst handling.
 
 ## Technology Used
 
@@ -76,6 +78,7 @@ AI and Data:
 - Google Cloud Secret Manager (optional, via REST)
 - Google Cloud Translation (optional, via REST)
 - Google Cloud Text-to-Speech (optional, via REST)
+- Google BigQuery event logging (optional, via REST)
 - Local knowledge base: `src/data/knowledgeBase.txt`
 - Centralized translations: `src/data/translations.json`
 
@@ -99,8 +102,12 @@ Testing:
 |   |   +-- hero.png
 |   |   +-- watermark.png
 |   +-- components
+|   |   +-- apiClient.js
 |   |   +-- app.js
+|   |   +-- icons.js
+|   |   +-- speechPlayer.js
 |   |   +-- styles.css
+|   |   +-- viewRenderer.js
 |   +-- config
 |   |   +-- languages.js
 |   |   +-- runtime.js
@@ -111,6 +118,7 @@ Testing:
 |   |   +-- index.html
 |   +-- services
 |   |   +-- authService.js
+|   |   +-- analyticsService.js
 |   |   +-- cacheService.js
 |   |   +-- electionService.js
 |   |   +-- geminiService.js
@@ -132,10 +140,12 @@ Testing:
 - `src/app/createApp.js`: Central app factory that wires routes, middleware, and services together.
 - `src/pages/index.html`: Main HTML shell for login and dashboard.
 - `src/components/styles.css`: Complete responsive design system and UI styling.
-- `src/components/app.js`: Frontend state, rendering, navigation, i18n, login, eligibility, and AI chat logic.
+- `src/components/app.js`: Frontend state, events, navigation, eligibility, and AI chat orchestration.
+- `src/components/viewRenderer.js`: Dedicated renderer layer for dashboard sections and chat UI.
 - `src/data/translations.json`: All UI text for supported languages.
 - `src/data/knowledgeBase.txt`: Election knowledge passed into the AI prompt.
 - `src/services/electionService.js`: Local rule-based eligibility and voting step logic.
+- `src/services/analyticsService.js`: Optional BigQuery event logging for usage analytics.
 - `src/services/geminiService.js`: Gemini orchestration, caching, and translation fallback logic.
 - `src/services/googleCloudService.js`: Secret Manager, Translation, and Text-to-Speech integration helpers.
 - `src/services/knowledgeBaseService.js`: Cached knowledge loading and relevant-section retrieval.
@@ -161,9 +171,11 @@ GEMINI_API_KEY=your_gemini_api_key
 ADMIN_PASSWORD=your_secure_admin_password
 PORT=3000
 AUTH_REQUIRED=false
-GOOGLE_CLOUD_PROJECT_ID=crowdflow-ai-493114
+GOOGLE_CLOUD_PROJECT_ID=civicguide-ai-494206
 GOOGLE_TRANSLATE_ENABLED=true
 GOOGLE_TTS_ENABLED=true
+GOOGLE_BIGQUERY_DATASET=optional_dataset_name
+GOOGLE_BIGQUERY_TABLE=optional_table_name
 ```
 
 Notes:
@@ -171,9 +183,10 @@ Notes:
 - `GEMINI_API_KEY` is required for AI Coach responses.
 - Set `AUTH_REQUIRED=false` to run the public-access mode without admin login.
 - If `AUTH_REQUIRED=true`, `ADMIN_PASSWORD` should always be set. The app no longer uses an insecure default password.
-- `GOOGLE_CLOUD_PROJECT_ID` enables optional Google Cloud service integrations. For this project, use `crowdflow-ai-493114`.
+- `GOOGLE_CLOUD_PROJECT_ID` enables optional Google Cloud service integrations. For this project, use `civicguide-ai-494206`.
 - In production, prefer Secret Manager instead of storing secrets directly in `.env`.
 - If you want the app to load secrets from Secret Manager, also set `GEMINI_API_KEY_SECRET` and/or `ADMIN_PASSWORD_SECRET`.
+- Set `GOOGLE_BIGQUERY_DATASET` and `GOOGLE_BIGQUERY_TABLE` if you want BigQuery analytics logging enabled.
 
 ## Run Locally
 
@@ -213,13 +226,13 @@ Before deploying, install and configure the Google Cloud CLI:
 ```powershell
 gcloud init
 gcloud auth login
-gcloud config set project crowdflow-ai-493114
+gcloud config set project civicguide-ai-494206
 ```
 
 Enable required services:
 
 ```powershell
-gcloud services enable appengine.googleapis.com run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com translate.googleapis.com texttospeech.googleapis.com
+gcloud services enable appengine.googleapis.com run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com translate.googleapis.com texttospeech.googleapis.com bigquery.googleapis.com
 ```
 
 ### Option 1: Deploy To App Engine
@@ -245,11 +258,14 @@ For a quick demo deployment, add environment variables in `app.yaml` before depl
 env_variables:
   NODE_ENV: "production"
   AUTH_REQUIRED: "false"
-  GOOGLE_CLOUD_PROJECT_ID: "crowdflow-ai-493114"
+  GOOGLE_CLOUD_PROJECT_ID: "civicguide-ai-494206"
   GOOGLE_USE_METADATA_SERVER: "true"
   GOOGLE_TRANSLATE_ENABLED: "true"
   GOOGLE_TTS_ENABLED: "true"
   GEMINI_API_KEY_SECRET: "gemini-api-key"
+  # Optional:
+  # GOOGLE_BIGQUERY_DATASET: "civicguide_analytics"
+  # GOOGLE_BIGQUERY_TABLE: "app_events"
 ```
 
 Do not commit real API keys to Git. For production, prefer Secret Manager or runtime environment configuration in GCP.
@@ -278,10 +294,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\deploy-cloud-run.ps1 -EnsureR
 
 This uses:
 
-- Project: `crowdflow-ai-493114`
+- Project: `civicguide-ai-494206`
 - Region: `asia-south1`
 - Secret Manager secret: `gemini-api-key`
 - Public-access mode: `AUTH_REQUIRED=false`
+- Optional BigQuery analytics can be enabled with `-BigQueryDataset` and `-BigQueryTable`
 
 If you prefer the manual steps, use the commands below.
 
@@ -306,13 +323,13 @@ gcloud artifacts repositories create civicguide-repo --repository-format=docker 
 Build and push the container:
 
 ```powershell
-gcloud builds submit --tag asia-south1-docker.pkg.dev/crowdflow-ai-493114/civicguide-repo/civicguide-ai:latest
+gcloud builds submit --tag asia-south1-docker.pkg.dev/civicguide-ai-494206/civicguide-repo/civicguide-ai:latest
 ```
 
 Deploy to Cloud Run:
 
 ```powershell
-gcloud run deploy civicguide-ai --image asia-south1-docker.pkg.dev/crowdflow-ai-493114/civicguide-repo/civicguide-ai:latest --region asia-south1 --allow-unauthenticated --port 8080 --set-env-vars NODE_ENV=production,AUTH_REQUIRED=false,GOOGLE_CLOUD_PROJECT_ID=crowdflow-ai-493114,GOOGLE_TRANSLATE_ENABLED=true,GOOGLE_TTS_ENABLED=true,GEMINI_API_KEY_SECRET=gemini-api-key
+gcloud run deploy civicguide-ai --image asia-south1-docker.pkg.dev/civicguide-ai-494206/civicguide-repo/civicguide-ai:latest --region asia-south1 --allow-unauthenticated --port 8080 --set-env-vars NODE_ENV=production,AUTH_REQUIRED=false,GOOGLE_CLOUD_PROJECT_ID=civicguide-ai-494206,GOOGLE_TRANSLATE_ENABLED=true,GOOGLE_TTS_ENABLED=true,GEMINI_API_KEY_SECRET=gemini-api-key
 ```
 
 After deployment, Cloud Run prints the public service URL.

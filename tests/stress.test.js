@@ -137,10 +137,13 @@ test('Server integration: health, login, AI answer, and speech route', async (t)
 
     const healthResponse = await fetch(`${server.baseUrl}/api/health`);
     assert.equal(healthResponse.status, 200);
+    assert.equal(healthResponse.headers.get('cache-control'), 'no-store, max-age=0');
+    assert.ok(healthResponse.headers.get('x-content-type-options'));
     const health = await healthResponse.json();
     assert.equal(health.status, 'ok');
     assert.equal(health.services.authRequired, true);
     assert.equal(health.services.authConfigured, true);
+    assert.equal(typeof health.services.analytics, 'object');
 
     const unauthorizedAsk = await fetch(`${server.baseUrl}/api/ask`, {
         method: 'POST',
@@ -224,6 +227,7 @@ test('Server integration: open access mode skips login requirement', async (t) =
     const health = await healthResponse.json();
     assert.equal(health.services.authRequired, false);
     assert.equal(health.services.authConfigured, true);
+    assert.equal(typeof health.services.analytics, 'object');
 
     const askResponse = await fetch(`${server.baseUrl}/api/ask`, {
         method: 'POST',

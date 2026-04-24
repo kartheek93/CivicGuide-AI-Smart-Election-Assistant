@@ -1,10 +1,12 @@
 param(
-    [string]$ProjectId = "crowdflow-ai-493114",
+    [string]$ProjectId = "civicguide-ai-494206",
     [string]$Region = "asia-south1",
     [string]$ServiceName = "civicguide-ai",
     [string]$RepositoryName = "civicguide-repo",
     [string]$ImageName = "civicguide-ai",
     [string]$GeminiSecretName = "gemini-api-key",
+    [string]$BigQueryDataset = "",
+    [string]$BigQueryTable = "",
     [switch]$EnsureRepository
 )
 
@@ -23,7 +25,7 @@ function Invoke-Gcloud {
 }
 
 $imageUri = "{0}-docker.pkg.dev/{1}/{2}/{3}:latest" -f $Region, $ProjectId, $RepositoryName, $ImageName
-$envVars = @(
+$envVarItems = @(
     "NODE_ENV=production",
     "AUTH_REQUIRED=false",
     "GOOGLE_CLOUD_PROJECT_ID=$ProjectId",
@@ -31,7 +33,14 @@ $envVars = @(
     "GOOGLE_TRANSLATE_ENABLED=true",
     "GOOGLE_TTS_ENABLED=true",
     "GEMINI_API_KEY_SECRET=$GeminiSecretName"
-) -join ","
+)
+
+if ($BigQueryDataset -and $BigQueryTable) {
+    $envVarItems += "GOOGLE_BIGQUERY_DATASET=$BigQueryDataset"
+    $envVarItems += "GOOGLE_BIGQUERY_TABLE=$BigQueryTable"
+}
+
+$envVars = $envVarItems -join ","
 
 Write-Host "Deploying CivicGuide AI to Cloud Run..." -ForegroundColor Cyan
 Write-Host "Project: $ProjectId" -ForegroundColor DarkCyan
