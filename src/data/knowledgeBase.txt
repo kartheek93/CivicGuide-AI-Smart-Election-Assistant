@@ -1,54 +1,39 @@
-# Elections in India - Knowledge Base
-India has a parliamentary system as defined by its constitution, with power distributed between the union government and the states. India's democracy is the largest democracy in the world.
+# CivicGuide AI Knowledge Base
+This knowledge base is intentionally evergreen. It focuses on stable election guidance and avoids volatile data such as live candidate lists, constituency-specific dates, or changing office holders.
 
-## Executive Leadership
-- **President of India:** Droupadi Murmu (ceremonial head of state)
-- **Prime Minister of India:** Narendra Modi (leader of the executive branch and Union Council of Ministers)
+## Eligibility Basics
+- A citizen generally needs to be at least 18 years old on or before the qualifying date to vote in India.
+- The voter must be an Indian citizen and must be registered in the electoral roll for the relevant constituency.
+- Eligibility questions that depend on current registration status should be verified on official Election Commission platforms.
 
-## Chief Ministers of States (Current context)
-- Andhra Pradesh: N. Chandrababu Naidu
-- Arunachal Pradesh: Pema Khandu
-- Assam: Himanta Biswa Sarma
-- Bihar: Nitish Kumar
-- Chhattisgarh: Vishnu Deo Sai
-- Delhi: Atishi
-- Goa: Pramod Sawant
-- Gujarat: Bhupendra Patel
-- Haryana: Nayab Singh Saini
-- Himachal Pradesh: Sukhvinder Singh Sukhu
-- Jharkhand: Hemant Soren
-- Karnataka: Siddaramaiah
-- Kerala: Pinarayi Vijayan
-- Madhya Pradesh: Mohan Yadav
-- Maharashtra: Eknath Shinde
-- Manipur: N. Biren Singh
-- Meghalaya: Conrad Sangma
-- Mizoram: Lalduhoma
-- Nagaland: Neiphiu Rio
-- Odisha: Mohan Charan Majhi
-- Punjab: Bhagwant Mann
-- Rajasthan: Bhajan Lal Sharma
-- Sikkim: Prem Singh Tamang
-- Tamil Nadu: M. K. Stalin
-- Telangana: Revanth Reddy
-- Tripura: Manik Saha
-- Uttar Pradesh: Yogi Adityanath
-- Uttarakhand: Pushkar Singh Dhami
-- West Bengal: Mamata Banerjee
+## Voter Registration
+- Citizens can register, update details, or verify electoral roll entries through official Election Commission and voter services portals.
+- Registration status matters even when a person meets the age and citizenship requirements.
+- If a user is old enough but not registered, the next step is to complete registration before polling day.
 
-## Upcoming / Recent State Assembly Elections
-- 2024: Haryana, Jammu & Kashmir, Maharashtra, Jharkhand, Arunachal Pradesh, Sikkim, Andhra Pradesh, Odisha
-- 2025: Delhi, Bihar
-- 2026: Assam, Kerala, Tamil Nadu, West Bengal, Puducherry
+## Polling Day Checklist
+- Confirm that the voter's name is present in the electoral roll before going to the booth.
+- Carry EPIC or another Election Commission approved photo identification document.
+- Reach the assigned polling station during official polling hours.
+- Follow booth instructions and maintain voter secrecy.
 
-## Election Commission of India (ECI)
-The ECI is an autonomous authority enacted under the Constitution (Article 324) responsible for administering Union and State elections. It ensures free and fair elections. State Election Commissions administer local body elections (Panchayats and Municipalities).
+## EVM, VVPAT, and NOTA
+- Electronic Voting Machines are used to record votes.
+- VVPAT provides a short visual confirmation of the selected vote.
+- NOTA allows a voter to formally choose none of the listed candidates.
+- Indelible ink is used to help prevent duplicate voting.
 
-## Voting System & Technology
-- **EVMs (Electronic Voting Machines):** Used since 1997. Saves time and prevents booth capturing.
-- **VVPAT (Voter-verified paper audit trail):** Added to ensure voters can cross-check their cast vote.
-- **NOTA (None of the Above):** Introduced in 2013, allows citizens to cast a negative vote against all candidates.
-- **Indelible Ink:** Applied to the left index finger to prevent double-voting. Contains photo-sensitive silver nitrate.
+## Accessibility and Assistance
+- Election authorities may provide support for senior citizens, persons with disabilities, and other voters who need assistance.
+- Booth-level arrangements can vary by location, so users should verify constituency-specific support through official portals or local election officers.
+- Clear, simple guidance improves first-time voter participation and confidence.
 
-## Problem Statement Focus
-The primary goal of this AI assistant is to help users understand the election process, timelines, and steps in an interactive and easy-to-follow way. Keep all instructions simple and beginner-friendly.
+## Safe Guidance Rules
+- Keep election guidance neutral, factual, and beginner-friendly.
+- Do not invent live election dates, candidate information, or official results.
+- Encourage users to verify time-sensitive information through official government channels.
+
+## Official Sources
+- Election Commission of India: https://www.eci.gov.in/
+- Voters' Service Portal: https://voters.eci.gov.in/
+- For live election schedules, constituency data, and official status updates, these sources should be treated as the final authority.

@@ -10,6 +10,7 @@ const NAV_ITEMS = ['welcome', 'vote', 'eligibility', 'timeline', 'knowledge', 'a
 const state = {
     translations: {},
     lang: DEFAULT_LANG,
+    authRequired: true,
     activeSection: 'welcome',
     isMenuOpen: false,
     isAiLoading: false,
@@ -55,11 +56,16 @@ document.addEventListener('DOMContentLoaded', init);
 async function init() {
     state.translations = await loadTranslations();
     state.lang = getInitialLanguage();
+    state.authRequired = await loadAuthRequirement();
     sessionStorage.removeItem(AUTH_TOKEN_KEY);
     renderLanguageSelectors();
     applyLanguage();
     renderLayout();
     bindEvents();
+
+    if (!state.authRequired) {
+        showApp();
+    }
 }
 
 async function loadTranslations() {
@@ -115,6 +121,24 @@ async function loadTranslations() {
                 sections: {}
             }
         };
+    }
+}
+
+async function loadAuthRequirement() {
+    try {
+        const response = await fetch('/api/health', {
+            headers: { Accept: 'application/json' }
+        });
+
+        if (!response.ok) {
+            return true;
+        }
+
+        const data = await response.json();
+        return data?.services?.authRequired !== false;
+    } catch (error) {
+        console.warn('Unable to detect auth mode:', error);
+        return true;
     }
 }
 
